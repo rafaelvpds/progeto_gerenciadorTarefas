@@ -1,0 +1,173 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600;700;800;900&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'Poppins';
+
+}
+
+.barraLateralRoxo{
+    background-color: #68519D;
+    height: 100%;
+    width: 50px ;
+    position: fixed;
+    border-right:20px solid #D7CAE5;;
+}
+.barraLateralAmarelo{
+    background-color: #F8B04E;
+    float: right;
+    position: fixed;
+    right: 0;
+    top: 40%;
+    height: 100%;
+    width: 100px;
+    transform: rotate(30deg);
+   
+}
+
+.container {
+    margin: 0 auto;
+}
+.lateral{
+    height: 100%;
+    width: 100px;
+    background-color: #68519D;
+   
+}
+
+.titleManager h5 {
+    font-weight: 800;
+    font-size: 20px;
+    color: #68519D;
+}
+
+.buttonAdd button {
+    border: 1px solid #68519D;
+    height: 36px;
+    width: 225px;
+    left: 133px;
+    top: 267px;
+    border-radius: 20px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 21px;
+    color: #68519D;
+    background-color: white;
+
+}
+
+/* 
+.tabTask div {
+    display: inline-block;
+    margin-top: 50px;
+    font-weight: 700;
+    font-size: 15px;
+    color: #2C2661;
+
+} */
+
+.tableTasck{
+    font-weight: 700;
+    font-size: 15px;
+    color: #2C2661;
+}
+
+
+
+#modalTask {
+    position: relative;
+    padding-left: 20px;
+    width: 661px;
+    height: 440px;
+    left: 30%;
+    bottom: 150px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    display: none;
+}
+.pageTask h5 {
+    font-family: 'Poppins';
+    font-size: 20px;
+    font-weight: 800;
+    color: #68519D;
+
+}
+
+.pageTask label {
+    font-family: 'Poppins';
+    font-size: 14px;
+    font-weight: 400;
+    color: #68519D;
+    display: block;
+}
+
+
+
+.pageTask input {
+    width: 555px;
+    height: 50px;
+    left: 443px;
+    top: 262px;
+    color: #68519D;
+    margin-bottom: 5px;
+    border: 1px solid #68519D;
+    border-radius: 10px;
+    padding-left: 10px;
+}
+
+.pageTask select{
+    color: #68519D;
+    border: 1px solid #68519D;
+    border-radius: 10px;
+}
+
+.pageTask select option {
+    border: 1px solid #000000;
+    border-radius: 10px;
+}
+.green{
+    color: green;
+}
+.yellow{
+    color: #F8B04E;
+}
+.red{
+    color: red
+}
+#btnCancelar {
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 10px;
+    border: none;
+    height: 36px;
+    width: 225px;
+    border-radius: 20px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 21px;
+    color: #68519D;
+    background-color: white;
+}
+
+#btnSalvar {
+    position: absolute;
+    bottom: 0;
+    right: 10px;
+    margin-bottom: 10px;
+    height: 36px;
+    width: 225px;
+    border-radius: 20px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 21px;
+    color: #68519D;
+    border: 1px solid #68519D;
+    background-color: white;
+}

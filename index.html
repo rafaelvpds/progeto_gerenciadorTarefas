@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+    <title>Manager</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="acess/css/style.css">
+
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="barraLateralRoxo"></div>
+    <div class="barraLateralAmarelo"></div>
+    <div class="container">
+
+        <!-- Logo Arnia -->
+        <div class="row d-flex align-items-center">
+
+            <div class="img-fluid col-7 ml-5 mt-5" id="logo_Arnia">
+                <img src="acess/imagem/logoArnia.png" alt="Arnia">
+            </div>
+
+        </div>
+        <!-- Titulo Gerenciador de Tarefas -->
+
+        <div class="row d-flex align-items-center">
+            <div class="col-7 titleManager ml-5">
+                <h5>Gereciador de Tarefas</h5>
+            </div>
+        </div>
+        <!-- Botão de add tarefas  -->
+        <div class="row d-flex align-items-center">
+            <div class="col-5 ml-5 buttonAdd">
+                <button id="btnTask">
+                   + Adicionar nova tarefa
+                </button>
+            </div>
+        </div>
+        <!-- Tabela de Apresentação de dados -->
+
+        <table class="table table-striped mt-5 ml-4" >
+            <thead>
+                <tr>
+                    <th scope="col">Núm</th>
+                    <th scope="col">Descição</th>
+                    <th scope="col">Data Entrega</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Ação</th>
+                </tr>
+            </thead>
+            <tbody id="tbody">
+
+            </tbody>
+        </table>
+
+
+
+
+
+
+        <!-- <div class="tabTask row d-flex">
+            <div class="col-1">Núm</div>
+            <div class="col-3">Descição</div>
+            <div class="col-3">Data Entrega</div>
+            <div class="col-3">Status</div>
+            <div class="col-2">Ação</div>
+        </div>
+      
+        <span id="dadosTarefas"></span> -->
+    </div>
+
+    <!--Inicio Modal Cadasdro de Tarefas -->
+    <div id="modalTask">
+        <div class="pageTask">
+            <h5>Adicionar nova tarefa</h5>
+            <div class="numTask">
+                <label for="">Número</label>
+                <input type="numberTask" id="numberTask" value="0">
+            </div>
+            <div class="descTask">
+                <label for="">Descrição</label>
+                <input type="text" id="descriptionTask" placeholder="Descrição da Tarefa">
+            </div>
+            <div class="dataTask">
+                <label for="">Data</label>
+                <input type="date" id="dateTask" placeholder="Data de Entrega">
+            </div>
+            <div class="statusTask">
+                <label for="">Status</label>
+                <select name="" id="options">
+                    <option selected>Escolha</option>
+                    <option value="Em Andamento">Em Andamento</option>
+                    <option value="Concluida">Concluida</option>
+                    <option value="Parado">Parado</option>
+                </select>
+            </div>
+        </div>
+        <div class="btnModal">
+            <button id="btnCancelar">Cancelar</button>
+            <!-- Botão salvar que vai ativar as funçãoes  -->
+            <button id="btnSalvar">Salvar</button>
+
+        </div>
+    </div>
+    <!-- Fim Modal Formulario de Tarefas -->
+
+    </div>
+
+    <!--JavaScript -->
+    <script src="acess/js/manager.js"></script>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
