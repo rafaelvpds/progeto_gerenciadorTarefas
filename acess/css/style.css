@@ -77,16 +77,23 @@
 
 
 #modalTask {
-    position: relative;
+    position: fixed;
     padding-left: 20px;
-    width: 661px;
-    height: 440px;
-    left: 30%;
+    padding-top: 20px;
+    width: 540px;
+    height: 495px;
+    top: 10%;
+    left: 30% ;
     bottom: 150px;
     background: #FFFFFF;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
     display: none;
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
 }
 .pageTask h5 {
     font-family: 'Poppins';
@@ -107,7 +114,7 @@
 
 
 .pageTask input {
-    width: 555px;
+    width: 500px;
     height: 50px;
     left: 443px;
     top: 262px;
@@ -116,6 +123,15 @@
     border: 1px solid #68519D;
     border-radius: 10px;
     padding-left: 10px;
+}
+
+.pageTask input::placeholder{
+    color: #68519D;
+}
+
+.pageTask input:focus{
+    border: none;
+   background-color: #D7CAE5;
 }
 
 .pageTask select{
@@ -139,6 +155,7 @@
 }
 #btnCancelar {
     position: absolute;
+    left: 0;
     bottom: 0;
     margin-bottom: 10px;
     border: none;
@@ -157,7 +174,7 @@
 #btnSalvar {
     position: absolute;
     bottom: 0;
-    right: 10px;
+    right: 35px;
     margin-bottom: 10px;
     height: 36px;
     width: 225px;
