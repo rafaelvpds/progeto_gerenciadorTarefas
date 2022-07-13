@@ -1,20 +1,45 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600;700;800;900&display=swap');
-
+/* definindo a propriedade inicial que todo o projeto vai pegar */
 * {
     padding: 0;
     margin: 0;
     font-family: 'Poppins';
 
+
+    
 }
 
-.barraLateralRoxo{
+#loadingTasck{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 99999;
+    background-color: #694FA0;
+    top: 0;
+    left: 0;
+    display: none;
+}
+
+#loadingTasckImg{
+    
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 100%;
+   
+
+}
+/* fazendo a Barra Lateral esquerda de Background */
+.barraLateralRoxo {
     background-color: #68519D;
     height: 100%;
-    width: 50px ;
+    width: 50px;
     position: fixed;
-    border-right:20px solid #D7CAE5;;
+    border-right: 20px solid #D7CAE5;
+    ;
 }
-.barraLateralAmarelo{
+/* fazendo a Barra Lateral direita de Background */
+.barraLateralAmarelo {
     background-color: #F8B04E;
     float: right;
     position: fixed;
@@ -23,24 +48,21 @@
     height: 100%;
     width: 100px;
     transform: rotate(30deg);
-   
-}
 
+}
+/* Definindo o Container  */
 .container {
     margin: 0 auto;
 }
-.lateral{
-    height: 100%;
-    width: 100px;
-    background-color: #68519D;
-   
-}
 
+/* Estilizando o titulo da tela Inicial */
 .titleManager h5 {
     font-weight: 800;
     font-size: 20px;
     color: #68519D;
 }
+
+/* Estilizando o botão de "Adicionar tarefa da home Page" */
 
 .buttonAdd button {
     border: 1px solid #68519D;
@@ -68,7 +90,7 @@
 
 } */
 
-.tableTasck{
+.tableTasck {
     font-weight: 700;
     font-size: 15px;
     color: #2C2661;
@@ -83,20 +105,22 @@
     width: 540px;
     height: 495px;
     top: 10%;
-    left: 30% ;
+    left: 30%;
     bottom: 150px;
     background: #FFFFFF;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
     display: none;
     z-index: 2000;
-    display: flex;
+    /* display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center; */
+    
 
 }
+
 .pageTask h5 {
-    font-family: 'Poppins';
+    
     font-size: 20px;
     font-weight: 800;
     color: #68519D;
@@ -104,7 +128,7 @@
 }
 
 .pageTask label {
-    font-family: 'Poppins';
+    
     font-size: 14px;
     font-weight: 400;
     color: #68519D;
@@ -112,7 +136,7 @@
 }
 
 
-
+/* Definindo a propriedade do input */
 .pageTask input {
     width: 500px;
     height: 50px;
@@ -120,39 +144,45 @@
     top: 262px;
     color: #68519D;
     margin-bottom: 5px;
-    border: 1px solid #68519D;
+    border: 1px solid rgba(0, 0, 0, 0);
+    background-color: rgb(238, 238, 238);
     border-radius: 10px;
     padding-left: 10px;
 }
 
-.pageTask input::placeholder{
+.pageTask input::placeholder {
     color: #68519D;
+    font-size: 10px;
+}
+/* Ação quando o input for selecionado */
+.pageTask input:focus {
+    border: 1px solid ghostwhite;
+    
 }
 
-.pageTask input:focus{
-    border: none;
-   background-color: #D7CAE5;
-}
-
-.pageTask select{
+.pageTask select {
     color: #68519D;
     border: 1px solid #68519D;
     border-radius: 10px;
 }
 
-.pageTask select option {
-    border: 1px solid #000000;
+/* .pageTask select::after {
+    border: 10px solid #000000;
     border-radius: 10px;
-}
-.green{
+} */
+
+.green {
     color: green;
 }
-.yellow{
+
+.yellow {
     color: #F8B04E;
 }
-.red{
+
+.red {
     color: red
 }
+
 #btnCancelar {
     position: absolute;
     left: 0;
@@ -162,7 +192,7 @@
     height: 36px;
     width: 225px;
     border-radius: 20px;
-    font-family: 'Poppins';
+    
     font-style: normal;
     font-weight: 600;
     font-size: 14px;
@@ -179,7 +209,7 @@
     height: 36px;
     width: 225px;
     border-radius: 20px;
-    font-family: 'Poppins';
+    
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
