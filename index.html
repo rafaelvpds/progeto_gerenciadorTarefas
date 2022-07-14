@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 
 <head>
-    <title>Manager</title>
+    <title>Manager Task</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -20,10 +20,10 @@
 
 <body>
 
-    <!-- Fazendo a tela de Carregamento Inicial da Página com o ID: "loadingTasck" e estilizando o mesmo no CSS-->
-    <div id="loadingTasck">
-        <!-- Acrescentado a imagem de carregamento da pagina com o ID:"loadingTasckImg"-->
-        <div id="loadingTasckImg">
+    <!-- Fazendo a tela de Carregamento Inicial da Página com o ID: "loadingTask" e estilizando o mesmo no CSS-->
+    <div id="loadingTask">
+        <!-- Acrescentado a imagem de carregamento da pagina com o ID:"loadingTaskImg"-->
+        <div id="loadingTaskImg">
             <!-- Acessando a imagem diretamente onde ela esta localizada -->
             <img src="acess/imagem/load.gif" alt="">
         </div>
@@ -89,26 +89,30 @@
             <div class="numTask">
                 <label for="">Número</label>
                 <input type="numberTask" id="numberTask" value="0">
+               
             </div>
               <!-- "DESCRIÇÃO" o usuario vai colocar a descrição da tabela  -->
             <div class="descTask">
                 <label for="">Descrição</label>
                 <input type="text" id="descriptionTask" placeholder="Descrição da Tarefa">
+                <span id="descricao-obrigatorio"></span>
             </div>
             <!--"DATA" Data de Entrega da tarefa a ser realizada  -->
             <div class="dataTask">
                 <label for="">Data</label>
                 <input type="date" id="dateTask" placeholder="Data de Entrega">
+                <span id="campo-data"></span>
             </div>
             <!-- "STATUS" o usuario vai colocar como esta o andamento da tarefa a ser realizada -->
             <div class="statusTask">
                 <label for="">Status</label>
                 <select name="" id="options">
-                    <option selected>Escolha</option>
+                    <option value="" selected>Escolha</option>
                     <option value="Em Andamento">Em Andamento</option>
                     <option value="Concluida">Concluida</option>
                     <option value="Parado">Parado</option>
                 </select>
+                <span id="status-obrigatotio"></span>
             </div>
         </div>
          <!--"Cancelar" Botão cancelar vai fechar o formulario de cadastro de tarefa sem ocorrer o salvamento da mesma  -->

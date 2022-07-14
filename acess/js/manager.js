@@ -19,7 +19,7 @@ cancModal.onclick = function () {
 
 function loadingScreen() {
     window.setTimeout(() => {
-        document.getElementById("loadingTasck").style.display = "none"
+        document.getElementById("loadingTask").style.display = "none"
     }, 5000)
 }
 
@@ -28,7 +28,7 @@ window.addEventListener("load", (event) => {
 })
 
 document.addEventListener("DOMContentLoaded", (event) => {
-    document.getElementById("loadingTasck").style.display = "block";
+    document.getElementById("loadingTask").style.display = "block";
 })
 
 
@@ -51,22 +51,36 @@ salvarModal.onclick = function () {
     // Capturando o Select
     var select = document.querySelector('#options');
     var valueTask = select.value;
-    // Fazendo uma condição para validar qual condição STATUS do select
-    //Criei uma variavel "status" para receber o valor ou a Cor na qual vai ser passada quando estivermos jogando 
-    //o  resultado da condição
-    var status
-    if (valueTask === "Concluida") {
-        status = "green"
-    } else if (valueTask === "Em Andamento") {
-        status = "yellow"
-    } else if (valueTask === "Parado") {
-        status = "red"
+
+
+    if (descricaoTask === "") {
+        alert("decrição vazia")
+        document.getElementById("descricao-obrigatorio").innerHTML = "Campo descrição Obrigatorio";
+    } else {
+        document.getElementById("descricao-obrigatorio").innerHTML = "";
+    }
+    if (valueTask === "") {
+        document.getElementById("status-obrigatotio").innerHTML = "Escolha um Status"
+    } else {
+        document.getElementById("status-obrigatotio").innerHTML = "";
+    }
+    if (dataTarefa === null) {
+        console.log(dataTarefa)
+        document.getElementById("campo-data").innerHTML = "Data de entrega Obrigatorio"
     }
 
-    //ESTOU PASSANDO OS VALORE RECEBIDOS PELO USUARIO E IMPRIMINDO NA TABELA
+    if (descricaoTask !== "" && valueTask !== "") {
+        var status
+        if (valueTask === "Concluida") {
+            status = "green"
+        } else if (valueTask === "Em Andamento") {
+            status = "yellow"
+        } else if (valueTask === "Parado") {
+            status = "red"
+        }
 
-    document.getElementById('tbody').innerHTML = document.getElementById('tbody').innerHTML +
-        `
+        document.getElementById('tbody').innerHTML = document.getElementById('tbody').innerHTML +
+            `
            <tr>
                 <td>${numeroTask} </td>
                 <td>${descricaoTask} </td>
@@ -78,17 +92,12 @@ salvarModal.onclick = function () {
            </tr>
 
      `
-    modal.style.display = 'none';
+        modal.style.display = 'none';
+    }
+
+
+
+    //ESTOU PASSANDO OS VALORE RECEBIDOS PELO USUARIO E IMPRIMINDO NA TABELA
+
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
