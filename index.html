@@ -7,30 +7,35 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="acess/css/style.css">
-
+    <!-- Animação -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+   
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-         <!--Icones na aba do navegador-->
-        <link rel="icon" href="acess/imagem/logoArnia.png">
-    
+    <!--Icones na aba do navegador-->
+    <link rel="icon" href="acess/imagem/logoArnia.png">
+
 </head>
 
 <body>
 
     <!-- Fazendo a tela de Carregamento Inicial da Página com o ID: "loadingTask" e estilizando o mesmo no CSS-->
     <div id="loadingTask">
+
         <!-- Acrescentado a imagem de carregamento da pagina com o ID:"loadingTaskImg"-->
         <div id="loadingTaskImg">
+
             <!-- Acessando a imagem diretamente onde ela esta localizada -->
             <img src="acess/imagem/load.gif" alt="">
         </div>
 
     </div>
-<!-- Barra Lateral esquerda de background, estilizada no CSS -->
+    <!-- Barra Lateral esquerda de background, estilizada no CSS -->
     <div class="barraLateralRoxo"></div>
+
     <!-- Barra Lateral direita de background, estilizada no CSS -->
     <div class="barraLateralAmarelo"></div>
 
@@ -89,20 +94,23 @@
             <div class="numTask">
                 <label for="">Número</label>
                 <input type="numberTask" id="numberTask" value="0">
-               
+
             </div>
-              <!-- "DESCRIÇÃO" o usuario vai colocar a descrição da tabela  -->
+            <!-- "DESCRIÇÃO" o usuario vai colocar a descrição da tabela  -->
             <div class="descTask">
                 <label for="">Descrição</label>
                 <input type="text" id="descriptionTask" placeholder="Descrição da Tarefa">
+                
                 <span id="descricao-obrigatorio"></span>
             </div>
+
             <!--"DATA" Data de Entrega da tarefa a ser realizada  -->
             <div class="dataTask">
                 <label for="">Data</label>
                 <input type="date" id="dateTask" placeholder="Data de Entrega">
                 <span id="campo-data"></span>
             </div>
+
             <!-- "STATUS" o usuario vai colocar como esta o andamento da tarefa a ser realizada -->
             <div class="statusTask">
                 <label for="">Status</label>
@@ -115,7 +123,8 @@
                 <span id="status-obrigatotio"></span>
             </div>
         </div>
-         <!--"Cancelar" Botão cancelar vai fechar o formulario de cadastro de tarefa sem ocorrer o salvamento da mesma  -->
+
+        <!--"Cancelar" Botão cancelar vai fechar o formulario de cadastro de tarefa sem ocorrer o salvamento da mesma  -->
         <div class="btnModal">
             <button id="btnCancelar">Cancelar</button>
 
@@ -140,6 +149,10 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+
+    <div class="alert d-none animate__animated" id="alerta">
+        A simple success alert—check it out!
+    </div>
 </body>
 
 </html>
