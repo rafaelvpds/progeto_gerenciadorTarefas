@@ -27,20 +27,32 @@ let salvarModal = document.getElementById("btnSalvar");
 
 salvarModal.onclick = () =>{
 
+
+
 let inptNumberTask = document.getElementById("numberTask").value;
 let inptDescriptionTask = document.getElementById("descriptionTask").value;
 let inptDateTask = document.getElementById("dateTask").value;
 let select = document.querySelector('#options');
 let inptstatusTask = select.value;
 
-
-validateInput(inptDescriptionTask, document.getElementById("descricao-obrigatorio").innerHTML ="Preencha o Campo Descrção")
-validateInput(inptDateTask, document.getElementById("campo-data").innerHTML ="Preencha Data")
-
-validateInput(inptstatusTask, document.getElementById("status-obrigatotio").innerHTML ="Preencha o Campo Status")
-
+if(inptDescriptionTask ==""){
+    document.getElementById("descricao-obrigatorio").innerHTML ="Preencha o Campo Descrção"
+}else{
+    document.getElementById("descricao-obrigatorio").innerHTML =""
+}
+if(inptDateTask===""){
+   document.getElementById("campo-data").innerHTML ="Preencha Data"
+}else{
+    document.getElementById("campo-data").innerHTML =""
+}
+if(inptstatusTask===""){
+    document.getElementById("status-obrigatotio").innerHTML ="Preencha o Campo Status"
+}else{
+    document.getElementById("status-obrigatotio").innerHTML =""
+}
 
 if(inptNumberTask !=='' && inptDescriptionTask !==''&& inptDateTask!==''&inptstatusTask!==''){
+    let id = 1;
 
     let task ={
             numberTask: inptNumberTask,
@@ -92,22 +104,18 @@ let printTask = ()=>{
 
     // console.log("fora",lista)
 }
-let validateInput = (valorInput, msgObrigatorio) =>{
+// let validateInput = (valorInput, msgObrigatorio) =>{
  
-    if(valorInput===''){
-        // console.log("vazio")
-        msgObrigatorio = ""
-        console.log(msgObrigatorio)
+//     if(valorInput ==""){
+//         // console.log("vazio")
+//         msgObrigatorio = "Preecher campos"
+     
       
-    }else{
-        msgObrigatorio= ""
-    }
-}
-
-
-
-
-
+//     }  else{
+//         console.log("vazio")
+//         msgObrigatorio = ""
+//     }
+// }
 
 // Dispara a ação para abrir o modal
 addTask.onclick = function () {
@@ -161,3 +169,14 @@ cancModal.onclick = function () {
 
 
 // }
+
+// http://localhost:3000/atividades?atividade=Minha Atividade1 Buscar por uma atividade
+
+// para editar http://localhost:3000/atividades/2 = id
+
+//ordenar decre = http://localhost:3000/atividades/?_sort=atividade&_order=desc
+
+// http://localhost:3000/atividades/?_sort=atividade&_order=asc acendente
+
+// post Salva
+// put Editar
