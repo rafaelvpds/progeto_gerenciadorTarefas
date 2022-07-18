@@ -3,19 +3,25 @@
 function loadingScreen() {
     window.setTimeout(() => {
         document.getElementById("loadingTask").style.display = "none"
+        
     }, 1000)
 }
 
 window.addEventListener("load", (event) => {
     loadingScreen();
+   carregarTask();
+
 })
 
 document.addEventListener("DOMContentLoaded", (event) => {
     document.getElementById("loadingTask").style.display = "block";
+  
 })
-// ----------------------------------------------------------------------------
 
-let bancoTask =[];
+
+
+
+// ----------------------------------------------------------------------------
 let addTask = document.getElementById("btnTask");
 let modal = document.getElementById("modalTask");
 let cancModal = document.getElementById("btnCancelar");
@@ -25,7 +31,7 @@ let salvarModal = document.getElementById("btnSalvar");
 
 
 
-salvarModal.onclick = () =>{
+ salvarModal.onclick = async () =>{
 
 
 
@@ -37,50 +43,76 @@ let inptstatusTask = select.value;
 
 if(inptDescriptionTask ==""){
     document.getElementById("descricao-obrigatorio").innerHTML ="Preencha o Campo Descrção"
+
 }else{
     document.getElementById("descricao-obrigatorio").innerHTML =""
 }
 if(inptDateTask===""){
    document.getElementById("campo-data").innerHTML ="Preencha Data"
+ 
 }else{
     document.getElementById("campo-data").innerHTML =""
 }
 if(inptstatusTask===""){
     document.getElementById("status-obrigatotio").innerHTML ="Preencha o Campo Status"
+   
 }else{
     document.getElementById("status-obrigatotio").innerHTML =""
 }
 
 if(inptNumberTask !=='' && inptDescriptionTask !==''&& inptDateTask!==''&inptstatusTask!==''){
-    let id = 1;
-
-    let task ={
-            numberTask: inptNumberTask,
-            descriptionTask: inptDescriptionTask,
-            dateTask: inptDateTask,
-            statusTask: inptstatusTask,  
-        }
-        bancoTask.push(task)
-        // console.log(task)
-        printTask()
-
-    }
+   
+                task ={
+                        numberTask: inptNumberTask,
+                        descriptionTask: inptDescriptionTask,
+                        dateTask: inptDateTask,
+                        statusTask: inptstatusTask,  
+                    }
+                    
+                const cadastrarTask = await fetch('http://localhost:3000/atividades',{
+                    method: 'POST',
+                    headers: {
+                        "Content-type": "application/json"
+                    },
+                    body: JSON.stringify(task)
+                })
+                
+                    await carregarTask();
+     
+    } 
+ 
 }
 
-let printTask = ()=>{
+let editar = async (idTarefas) =>{
+    console.log(idTarefas)
+    const response = await fetch(
+        `http://localhost:3000/atividades/${idTarefas}` )
+    const tarefas = response.json()
+    console.log(tarefas)
+}
 
-    let lista =''
-    console.log(bancoTask)
-    bancoTask.forEach((task)=>{
+let buscarTask = async () => {
+    const response = await fetch("http://localhost:3000/atividades");
+    const tarefa = await response.json()
+    return tarefa
+}
 
+let carregarTask = async()=>{
+    let lista = ""
+
+    const listTask = await buscarTask()
+
+    listTask.forEach((task) => {
+        
+       
         let status
 
         if (task.statusTask === "Concluida") {
-            status = "green"
+            status = "statusConcluid"
         } else if (task.statusTask === "Em Andamento") {
-            status = "yellow"
+            status = "statusInProgress"
         } else if (task.statusTask === "Parado") {
-            status = "red"
+            status = "statusStop"
         }
            lista = lista +
                     `
@@ -92,30 +124,20 @@ let printTask = ()=>{
                         
                         <td>
                         
-                            <img src="../acess/imagem/icones/editar.png">
-                            <img src="../acess/imagem/icones/excluir.png">  
+                            <img src="./acess/imagem/icones/editar.png" onclick ="editar(${task.id})">
+                            <img src="./acess/imagem/icones/excluir.png" onclick ="excluir(${task.id})">  
                         
                         </td>
                    </tr>
         
             `
-    })
+        
+    });
+
     document.getElementById('tbody').innerHTML = lista
-
-    // console.log("fora",lista)
 }
-// let validateInput = (valorInput, msgObrigatorio) =>{
- 
-//     if(valorInput ==""){
-//         // console.log("vazio")
-//         msgObrigatorio = "Preecher campos"
-     
-      
-//     }  else{
-//         console.log("vazio")
-//         msgObrigatorio = ""
-//     }
-// }
+
+// ---------------------------------------------------------------
 
 // Dispara a ação para abrir o modal
 addTask.onclick = function () {
@@ -135,48 +157,39 @@ cancModal.onclick = function () {
     modal.style.display = "none";
 }
 
-//     function cadastradoComSucesso() {
-//         let sucesso = document.getElementById("alerta");
+    // Verificar apos a conclusao das funcionalidades
 
-//         sucesso.innerHTML = 'Cadastrado com sucesso.';
+    // function cadastradoComSucesso() {
+    //     let sucesso = document.getElementById("alerta");
 
-//         sucesso.classList.add("alert-success", "animate__fadeInUp"); //CSS do bootstrap
-//         sucesso.classList.remove("d-none");
+    //     sucesso.innerHTML = 'Cadastrado com sucesso.';
+
+    //     sucesso.classList.add("alert-success", "animate__fadeInUp"); //CSS do bootstrap
+    //     sucesso.classList.remove("d-none");
 
 
-//         window.setTimeout(() => {
-
-//             sucesso.document.getElementById("alerta").classList.remove("animate__fadeInUp");
-//             // sucesso.document.getElementById("alerta").classList.add("animate__fadeOutDown")
-
-//         },
-
-//             2000);
-
-//         window.setTimeout(() => {
+    //     window.setTimeout(() => {
             
-//             sucesso.classList.add("animate__fadeOutDown");
-//             sucesso.classList.remove("d-none");
-//         },
+    //         sucesso.classList.add("animate__fadeOutDown");
+    //         sucesso.classList.remove("d-none");
+    //     },
 
-//             1000);
+    //         2000);
+    // }
 
-//         window.setTimeout(() => {
-//             sucesso.classList.add("d-none");
-//             sucesso.classList.remove("animate__fadeOut");
-//         })
-//     }
+    // function validadTask(){
+    //     let erroTask = document.getElementById('alertaErro')
+
+    //     erroTask.innerHTML = "Campos Obrigatorios não Preenchidos"
+
+    //     erroTask.classList.add("animate__fadeInUp");
+    //     erroTask.classList.remove('d-none');
+
+    //     window.setTimeout(()=>{
+    //         erroTask.classList.add('animate__fadeOutDown');
+    //         erroTask.classList.remove('d-none');
+    //     },
+    //     2000);
+    // }
 
 
-// }
-
-// http://localhost:3000/atividades?atividade=Minha Atividade1 Buscar por uma atividade
-
-// para editar http://localhost:3000/atividades/2 = id
-
-//ordenar decre = http://localhost:3000/atividades/?_sort=atividade&_order=desc
-
-// http://localhost:3000/atividades/?_sort=atividade&_order=asc acendente
-
-// post Salva
-// put Editar
