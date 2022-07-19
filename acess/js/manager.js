@@ -26,20 +26,17 @@ let addTask = document.getElementById("btnTask");
 let modal = document.getElementById("modalTask");
 let cancModal = document.getElementById("btnCancelar");
 
-let salvarModal = document.getElementById("btnSalvar");
 
 
 
 
- salvarModal.onclick = async () =>{
-
-
+async function adicionarTarefas(){
 
 let inptNumberTask = document.getElementById("numberTask").value;
 let inptDescriptionTask = document.getElementById("descriptionTask").value;
 let inptDateTask = document.getElementById("dateTask").value;
-let select = document.querySelector('#options');
-let inptstatusTask = select.value;
+let inptstatusTask = document.getElementById("options").value;
+// let inptstatusTask = select.value;
 
 if(inptDescriptionTask ==""){
     document.getElementById("descricao-obrigatorio").innerHTML ="Preencha o Campo Descrção"
@@ -78,17 +75,107 @@ if(inptNumberTask !=='' && inptDescriptionTask !==''&& inptDateTask!==''&inptsta
                 })
                 
                     await carregarTask();
+                    document.getElementById("numberTask").value = ""
+                    document.getElementById("descriptionTask").value =""
+                    document.getElementById("dateTask").value = ""
+                    document.getElementById("options").value = ""
+                    fecharModal()
      
     } 
- 
+    
 }
 
-let editar = async (idTarefas) =>{
+let excluir = async(idTarefas) =>{
     console.log(idTarefas)
-    const response = await fetch(
-        `http://localhost:3000/atividades/${idTarefas}` )
-    const tarefas = response.json()
-    console.log(tarefas)
+    let response = await fetch (`http://localhost:3000/atividades/${idTarefas}`,{
+        method: 'DELETE',
+        headers: {
+            "Content-type": "application/json"
+        },
+    
+    })
+             await carregarTask();
+
+}
+
+
+
+let editar = async (idTarefas) =>{
+
+    modal.style.display = "block";
+    console.log(idTarefas)
+    let response = await fetch(`http://localhost:3000/atividades/${idTarefas}`)
+    let editarTask = await response.json()
+
+ 
+    
+    document.getElementById("dateTask").value = editarTask.dateTask
+    document.getElementById("descriptionTask").value = editarTask.descriptionTask           
+    document.getElementById("numberTask").value = editarTask.numberTask            
+    document.getElementById("options").value = editarTask.statusTask 
+    document.getElementById("tarefa").value = idTarefas
+
+    document.getElementById('btnSalvar').onclick =function (){
+    salvarEd(idTarefas)} 
+}
+
+const salvarEd = async (idTarefas) =>{ // async function editarTask(){
+    // let inputTarefa = document.getElementById("tarefa").value
+    let inptNumberTask = document.getElementById("numberTask").value;
+    let inptDescriptionTask = document.getElementById("descriptionTask").value;
+    let inptDateTask = document.getElementById("dateTask").value;
+    let inptstatusTask = document.getElementById("options").value;
+   
+    
+    if(inptDescriptionTask ==""){
+        document.getElementById("descricao-obrigatorio").innerHTML ="Preencha o Campo Descrção"
+    
+    }else{
+        document.getElementById("descricao-obrigatorio").innerHTML =""
+    }
+    if(inptDateTask===""){
+       document.getElementById("campo-data").innerHTML ="Preencha Data"
+     
+    }else{
+        document.getElementById("campo-data").innerHTML =""
+    }
+    if(inptstatusTask===""){
+        document.getElementById("status-obrigatotio").innerHTML ="Preencha o Campo Status"
+       
+    }else{
+        document.getElementById("status-obrigatotio").innerHTML =""
+    }
+    
+    if(inptNumberTask !=='' && inptDescriptionTask !==''&& inptDateTask!==''&inptstatusTask!==''){
+       
+                    task ={
+
+                            numberTask: inptNumberTask,
+                            descriptionTask: inptDescriptionTask,
+                            dateTask: inptDateTask,
+                            statusTask: inptstatusTask,  
+                        }
+                        
+                    const cadastrarTask = await fetch(`http://localhost:3000/atividades/${idTarefas}`,{
+                        method: 'PUT',
+                        headers: {
+                            "Content-type": "application/json"
+                        },
+                        body: JSON.stringify(task)
+                    })
+                    
+                    await carregarTask();
+                    document.getElementById("numberTask").value = ""
+
+                    document.getElementById("descriptionTask").value =""
+
+                    document.getElementById("dateTask").value = ""
+
+                    document.getElementById("options").value = ""
+
+                    fecharModal()
+         
+        } 
 }
 
 let buscarTask = async () => {
@@ -125,6 +212,7 @@ let carregarTask = async()=>{
                         <td>
                         
                             <img src="./acess/imagem/icones/editar.png" onclick ="editar(${task.id})">
+
                             <img src="./acess/imagem/icones/excluir.png" onclick ="excluir(${task.id})">  
                         
                         </td>
@@ -147,10 +235,17 @@ addTask.onclick = function () {
 cancModal.onclick = function () {
     modal.style.display = "none";
 }
+function fecharModal(){
+    modal.style.display = "none"
+}
 
 // Dispara a ação para abrir o modal
 addTask.onclick = function () {
-    modal.style.display = "block";
+    modal.style.display = "block"
+    document.getElementById('btnSalvar').onclick =
+    function (){
+    adicionarTarefas()
+} 
 }
 // Dispara a ação no botão Cancelar para fechar o modal sem trazer nenhum resultado
 cancModal.onclick = function () {

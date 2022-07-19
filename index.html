@@ -91,9 +91,10 @@
             <h5>Adicionar nova tarefa</h5>
 
             <!--"NUMERO"  -->
+            <input type="hidden" id="tarefa">
             <div class="numTask">
                 <label for="">Número</label>
-                <input type="numberTask" id="numberTask" value="0">
+                <input type="number" id="numberTask">
 
             </div>
             <!-- "DESCRIÇÃO" o usuario vai colocar a descrição da tabela  -->
@@ -129,7 +130,8 @@
             <button id="btnCancelar">Cancelar</button>
 
             <!--"SALVAR" Botão salvar que vai ativar as funçãoes para salvar todas as descrções de tarefas que vai ser realizada  -->
-            <button id="btnSalvar">Salvar</button>
+           
+            <button id="btnSalvar" onclick="adicionarTarefas()">Salvar</button>
            
 
         </div>
