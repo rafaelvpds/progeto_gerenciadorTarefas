@@ -5,7 +5,11 @@
     margin: 0;
     font-family: 'Poppins';    
 }
-
+body{
+   
+    background: url(../imagem/barraAmarela.png) right bottom no-repeat;
+    background-attachment: fixed;
+}
 #loadingTask{
     position: fixed;
     width: 100%;
@@ -35,18 +39,8 @@
     border-right: 20px solid #D7CAE5;
     ;
 }
-/* fazendo a Barra Lateral direita de Background */
-.barraLateralAmarelo {
-    background-color: #F8B04E;
-    float: right;
-    position: fixed;
-    right: 0;
-    top: 40%;
-    height: 100%;
-    width: 100px;
-    transform: rotate(30deg);
 
-}
+
 /* Definindo o Container  */
 .container {
     margin: 0 auto;
@@ -141,7 +135,7 @@ span{
 
 .pageTask input::placeholder {
     color: #68519D;
-    font-size: 10px;
+    font-size: 1.0rem;
 }
 /* Ação quando o input for selecionado */
 .pageTask input:focus {
@@ -155,10 +149,9 @@ span{
     border-radius: 10px;
 }
 
-/* .pageTask select::after {
-    border: 10px solid #000000;
-    border-radius: 10px;
-} */
+input[type=date]{
+    width: 50%;
+}
 
 .statusConcluid {
     color: green;
@@ -226,6 +219,3 @@ span{
     font-weight: 400;
     border-radius: 5px;
 }
-/* #btnSalvar :disabled{
-    background-color: red;
-} */
