@@ -679,7 +679,13 @@ function cadastradoComSucesso() {
 
         2000);
 }
-
+// functionOrdernar(nomeCampo, endPoint){
+//     let response = await fetch(
+//     `http://localhost:3000/atividades/?_sort=${nomeCampo}&_order=${endPoint}`)
+//     let ordenar = await response.json();
+//     console.log(ordenar)
+//     return descOrder
+// }
 // /tarefas?_sort=VAR1&_order=VAR2
 
 // VAR1 =  atributo do objeto

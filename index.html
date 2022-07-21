@@ -67,47 +67,62 @@
             </div>
         </div>
         <!-- Tabela de Apresentação de dados -->
+        <div class="row d-flex align-items-center">
+            <div class="col-8">
 
-        <table class="table table-striped mt-5 ml-4">
-            <thead>
-                <tr>
-                    <th scope="col">Núm
+                <table class="table table-striped mt-5 ml-4">
+                    <thead>
+                        <tr>
+                            <th scope="col">Núm
 
-                        <i class="fa-solid fa-sort-up" onclick="orderNumDecre()"></i>
-                        <i class="fa-solid fa-sort-down" onclick="orderNumAsc()"></i>
+                                <i class="fa-solid fa-sort-up" onclick="orderNumDecre()"></i>
+                                <i class="fa-solid fa-sort-down" onclick="orderNumAsc()"></i>
 
-                    </th>
-                    <th scope="col">
+                            </th>
+                            <th scope="col">
 
-                      Descição
-                      <i class="fa-solid fa-sort-up" onclick="orderDescDecre()"></i>
-                      <i class="fa-solid fa-sort-down" onclick="orderDescAsc()"></i>
+                                Descição
+                                <i class="fa-solid fa-sort-up" onclick="orderDescDecre()"></i>
+                                <i class="fa-solid fa-sort-down" onclick="orderDescAsc()"></i>
 
-                    </th>
-                    <th scope="col" >
-                        Data Entrega
-                      <i class="fa-solid fa-sort-up" onclick="orderDate()"></i>
-                      <i class="fa-solid fa-sort-down" onclick="orderDateAsc()"></i>
-                    </th>
-                    <th scope="col">Status
-                        <i class="fa-solid fa-sort-up" onclick="orderStatus()"></i>
-                        <i class="fa-solid fa-sort-down" onclick="orderStatusAsc()"></i>
-                    </th>
-                    <th scope="col">Ação</th>
-                </tr>
-            </thead>
-            <!-- Corpo da tabela onde vai receber os dados passados pelo usuario atravez do JS -->
-            <tbody id="tbody">
+                            </th>
+                            <th scope="col">
+                                Data Entrega
+                                <i class="fa-solid fa-sort-up" onclick="orderDate()"></i>
+                                <i class="fa-solid fa-sort-down" onclick="orderDateAsc()"></i>
+                            </th>
+                            <th scope="col">Status
+                                <i class="fa-solid fa-sort-up" onclick="orderStatus()"></i>
+                                <i class="fa-solid fa-sort-down" onclick="orderStatusAsc()"></i>
+                            </th>
+                            <th scope="col">Ação</th>
+                        </tr>
+                    </thead>
+                    <!-- Corpo da tabela onde vai receber os dados passados pelo usuario atravez do JS -->
+                    <tbody id="tbody">
 
-            </tbody>
-        </table>
+                    </tbody>
+                </table>
+
+
+            </div>
+
+
+
+
+        </div>
+
     </div>
 
     <!--Inicio Modal Cadasdro de Tarefas -->
     <!-- Assim como o "Container" criado acima, criei um container para fazer o alinhamento e do modal -->
     <div id="modalTask">
         <div class="pageTask">
-            <h5>Adicionar nova tarefa</h5>
+            <h5> 
+                <img class="img-fluid mb-2" src="acess/imagem/icones/icone.png"  alt="">
+                Adicionar nova tarefa
+
+            </h5>
 
             <!--"NUMERO"  -->
 

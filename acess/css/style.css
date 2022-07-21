@@ -56,7 +56,7 @@ body{
 /* Estilizando o botão de "Adicionar tarefa da home Page" */
 
 .buttonAdd button {
-    border: 1px solid #68519D;
+   
     height: 36px;
     width: 225px;
     left: 133px;
@@ -68,6 +68,13 @@ body{
     line-height: 21px;
     color: #68519D;
     background-color: white;
+    border: none;
+}
+
+.buttonAdd :hover{
+    background-color: #68519D;
+    color: #FFFFFF;
+    border: none;
 }
 
 
@@ -85,7 +92,7 @@ span{
     position: fixed;
     padding-left: 20px;
     padding-top: 20px;
-    width: 540px;
+    width: 50%;
     height: 495px;
     top: 5%;
     left: 30%;
@@ -95,23 +102,19 @@ span{
     border-radius: 10px;
     display: none;
     z-index: 2000;
-    /* display: flex;
-    justify-content: center;
-    align-items: center; */
-    
-
 }
 
-.pageTask h5 {
-    
-    font-size: 20px;
+.addTaskModal{
+    width: 3%;
+}
+.pageTask h5 { 
+    font-size: 25px;
     font-weight: 800;
     color: #68519D;
 
 }
 
 .pageTask label {
-    
     font-size: 14px;
     font-weight: 400;
     color: #68519D;
@@ -121,7 +124,7 @@ span{
 
 /* Definindo a propriedade do input */
 .pageTask input {
-    width: 500px;
+    width: 60%;
     height: 50px;
     left: 443px;
     top: 262px;
@@ -142,6 +145,7 @@ span{
     border: 1px solid ghostwhite;
     
 }
+
 
 .pageTask select {
     color: #68519D;
@@ -177,13 +181,16 @@ input[type=date]{
     height: 36px;
     width: 225px;
     border-radius: 20px;
-    
     font-style: normal;
     font-weight: 600;
     font-size: 14px;
     line-height: 21px;
     color: #68519D;
     background-color: white;
+}
+#cancelEdit:hover{
+    background-color: #68519D;
+    color: #FFFFFF;
 }
 
 #btnSalvar {
@@ -195,13 +202,21 @@ input[type=date]{
     width: 225px;
     border-radius: 20px;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 600;
     font-size: 14px;
     line-height: 21px;
     color: #68519D;
     border: 1px solid #68519D;
     background-color: white;
 }
+
+#btnSalvar:hover{
+    background-color: #68519D;
+    color: #FFFFFF;
+  
+}
+
+
 
 
 /* .alert-success{
