@@ -3,269 +3,252 @@
 function loadingScreen() {
     window.setTimeout(() => {
         document.getElementById("loadingTask").style.display = "none"
-        
+
     }, 1000)
 }
 
 window.addEventListener("load", (event) => {
     loadingScreen();
-   carregarTask();
+    carregarTask();
 
 })
 
 document.addEventListener("DOMContentLoaded", (event) => {
     document.getElementById("loadingTask").style.display = "block";
-  
+
 })
 
 // ----------------------------------------------------------------------------
 let addTask = document.getElementById("btnTask");
 let modal = document.getElementById("modalTask");
-let cancModal = document.getElementById("btnCancelar");
 
-async function adicionarTarefas(){
 
-let inptNumberTask = document.getElementById("numberTask").value;
-let inptDescriptionTask = document.getElementById("descriptionTask").value;
-let inptDateTask = document.getElementById("dateTask").value;
-let inptstatusTask = document.getElementById("options").value;
-// let inptstatusTask = select.value;
+async function adicionarTarefas() {
 
-if(inptDescriptionTask ==""){
-    document.getElementById("descricao-obrigatorio").innerHTML ="Preencha o Campo Descrção"
+    let inptNumberTask = document.getElementById("numberTask").value;
+    let inptDescriptionTask = document.getElementById("descriptionTask").value;
+    let inptDateTask = document.getElementById("dateTask").value;
+    let inptstatusTask = document.getElementById("options").value;
 
-}else{
-    document.getElementById("descricao-obrigatorio").innerHTML =""
-}
-if(inptDateTask===""){
-   document.getElementById("campo-data").innerHTML ="Preencha Data"
- 
-}else{
-    document.getElementById("campo-data").innerHTML =""
-}
-if(inptstatusTask===""){
-    document.getElementById("status-obrigatotio").innerHTML ="Preencha o Campo Status"
-   
-}else{
-    document.getElementById("status-obrigatotio").innerHTML =""
-}
+    validadeInput(document.getElementById("numberTask").value, document.getElementById("numero-obrigatorio").innerHTML = "Número tarefa não preenchida");
 
-if(inptNumberTask !=='' && inptDescriptionTask !==''&& inptDateTask!==''&inptstatusTask!==''){
-   
-                task ={
-                        numberTask:  inptNumberTask,
-                        descriptionTask: inptDescriptionTask,
-                        dateTask: inptDateTask,
-                        statusTask: inptstatusTask,  
-                    }
-                    
-                const cadastrarTask = await fetch('http://localhost:3000/atividades',{
-                    method: 'POST',
-                    headers: {
-                        "Content-type": "application/json"
-                    },
-                    body: JSON.stringify(task)
-                })
-                
-                    await carregarTask();
-                    document.getElementById("numberTask").value = ""
-                    document.getElementById("descriptionTask").value =""
-                    document.getElementById("dateTask").value = ""
-                    document.getElementById("options").value = ""
-                    fecharModal()
-     
-    } 
-    
+    validadeInput(document.getElementById("descriptionTask").value, document.getElementById("descricao-obrigatorio").innerHTML = "Descrição tarefa não preenchida");
+
+    validadeInput(document.getElementById("dateTask").value, document.getElementById("campo-data").innerHTML = "Data tarefa não preenchida");
+
+    validadeInput(document.getElementById("options").value, document.getElementById("status-obrigatotio").innerHTML = "Status tarefa não preenchida");
+
+    if (inptNumberTask !== '' && inptDescriptionTask !== '' && inptDateTask !== '' & inptstatusTask !== '') {
+
+        task = {
+            numberTask: inptNumberTask,
+            descriptionTask: inptDescriptionTask,
+            dateTask: inptDateTask,
+            statusTask: inptstatusTask,
+        }
+
+        const cadastrarTask = await fetch('http://localhost:3000/atividades', {
+            method: 'POST',
+            headers: {
+                "Content-type": "application/json"
+            },
+            body: JSON.stringify(task)
+        })
+
+        await carregarTask();
+        cleanIput();
+        fecharModal()
+
+    }
+
 }
 
-let excluir = async(idTarefas) =>{
+let excluir = async (idTarefas) => {
     console.log(idTarefas)
-    let response = await fetch (`http://localhost:3000/atividades/${idTarefas}`,{
+    let response = await fetch(`http://localhost:3000/atividades/${idTarefas}`, {
         method: 'DELETE',
         headers: {
             "Content-type": "application/json"
         },
-    
+
     })
-             await carregarTask();
+    await carregarTask();
 
 }
 
-let editar = async (idTarefas) =>{
+let editar = async (idTarefas) => {
 
     modal.style.display = "block";
     console.log(idTarefas)
     let response = await fetch(`http://localhost:3000/atividades/${idTarefas}`)
     let editarTask = await response.json()
 
- 
-    
-    document.getElementById("dateTask").value = editarTask.dateTask
-    document.getElementById("descriptionTask").value = editarTask.descriptionTask           
-    document.getElementById("numberTask").value = editarTask.numberTask            
-    document.getElementById("options").value = editarTask.statusTask 
-    document.getElementById("tarefa").value = idTarefas
 
-    document.getElementById('btnSalvar').onclick =function (){
-    salvarEd(idTarefas)} 
+
+    document.getElementById("dateTask").value = editarTask.dateTask
+    document.getElementById("descriptionTask").value = editarTask.descriptionTask
+    document.getElementById("numberTask").value = editarTask.numberTask
+    document.getElementById("options").value = editarTask.statusTask
+
+    document.getElementById('cancelEdit').onclick = function () { btnCancelar() }
+    document.getElementById('btnSalvar').onclick = function () { salvarEd(idTarefas) }
 }
 
-const salvarEd = async (idTarefas) =>{ 
-    // async function editarTask(){
-    // let inputTarefa = document.getElementById("tarefa").value
+const salvarEd = async (idTarefas) => {
     let inptNumberTask = document.getElementById("numberTask").value;
     let inptDescriptionTask = document.getElementById("descriptionTask").value;
     let inptDateTask = document.getElementById("dateTask").value;
     let inptstatusTask = document.getElementById("options").value;
-   
-    
-    if(inptDescriptionTask ==""){
-        document.getElementById("descricao-obrigatorio").innerHTML ="Preencha o Campo Descrção"
-    
-    }else{
-        document.getElementById("descricao-obrigatorio").innerHTML =""
+
+    validadeInput(document.getElementById("numberTask").value, document.getElementById("numero-obrigatorio").innerHTML = "Número tarefa não preenchida");
+
+    validadeInput(document.getElementById("descriptionTask").value, document.getElementById("descricao-obrigatorio").innerHTML = "Descrição tarefa não preenchida");
+
+    validadeInput(document.getElementById("dateTask").value, document.getElementById("campo-data").innerHTML = "Data tarefa não preenchida");
+
+    validadeInput(document.getElementById("options").value, document.getElementById("status-obrigatotio").innerHTML = "Status tarefa não preenchida");
+
+    // if(inptDescriptionTask ==""){
+    //     document.getElementById("descricao-obrigatorio").innerHTML ="Preencha o Campo Descrção"
+
+    // }else{
+    //     document.getElementById("descricao-obrigatorio").innerHTML =""
+    // }
+    // if(inptDateTask===""){
+    //    document.getElementById("campo-data").innerHTML ="Preencha Data"
+
+    // }else{
+    //     document.getElementById("campo-data").innerHTML =""
+    // }
+    // if(inptstatusTask===""){
+    //     document.getElementById("status-obrigatotio").innerHTML ="Preencha o Campo Status"
+
+    // }else{
+    //     document.getElementById("status-obrigatotio").innerHTML =""
+    // }
+
+    if (inptNumberTask !== '' && inptDescriptionTask !== '' && inptDateTask !== '' & inptstatusTask !== '') {
+
+        task = {
+
+            numberTask: inptNumberTask,
+            descriptionTask: inptDescriptionTask,
+            dateTask: inptDateTask,
+            statusTask: inptstatusTask,
+        }
+
+        const cadastrarTask = await fetch(`http://localhost:3000/atividades/${idTarefas}`, {
+            method: 'PUT',
+            headers: {
+                "Content-type": "application/json"
+            },
+            body: JSON.stringify(task)
+        })
+
+        await carregarTask();
+
+        cleanIput();
+        fecharModal();
+
     }
-    if(inptDateTask===""){
-       document.getElementById("campo-data").innerHTML ="Preencha Data"
-     
-    }else{
-        document.getElementById("campo-data").innerHTML =""
-    }
-    if(inptstatusTask===""){
-        document.getElementById("status-obrigatotio").innerHTML ="Preencha o Campo Status"
-       
-    }else{
-        document.getElementById("status-obrigatotio").innerHTML =""
-    }
-    
-    if(inptNumberTask !=='' && inptDescriptionTask !==''&& inptDateTask!==''&inptstatusTask!==''){
-       
-                    task ={
-
-                            numberTask: parseInt(inptNumberTask) ,
-                            descriptionTask: inptDescriptionTask,
-                            dateTask: inptDateTask,
-                            statusTask: inptstatusTask,  
-                        }
-                        
-                    const cadastrarTask = await fetch(`http://localhost:3000/atividades/${idTarefas}`,{
-                        method: 'PUT',
-                        headers: {
-                            "Content-type": "application/json"
-                        },
-                        body: JSON.stringify(task)
-                    })
-                    
-                    await carregarTask();
-                    document.getElementById("numberTask").value = ""
-
-                    document.getElementById("descriptionTask").value =""
-
-                    document.getElementById("dateTask").value = ""
-
-                    document.getElementById("options").value = ""
-                    cadastradoComSucesso()
-                    fecharModal()
-         
-        } 
 }
 
-function orderDescDecre(){
+function orderDescDecre() {
     printOrderDescr()
 }
-function orderDescAsc(){
+function orderDescAsc() {
     printOrderDescrAsc()
 }
 // ------------------------------------------------------------------------
-function orderDate(){
+function orderDate() {
     printOrderDate();
 }
-function orderDateAsc(){
+function orderDateAsc() {
     printOrderDateAce();
 }
 // -----------------------------------------------------------------------
-function orderStatus(){
+function orderStatus() {
     printOrderStatus()
 }
-function orderStatusAsc(){
+function orderStatusAsc() {
 
     printOrderAcenStatus()
 }
 // --------------------------------------------------------------------
-function orderNumDecre(){
+function orderNumDecre() {
     printOrderNumDesc();
 
     // document.getElementById('orderAsc').onclick = function(){ printOrderNumAsc();}
-   
+
 }
-function orderNumAsc(){
+function orderNumAsc() {
     printOrderNumAsc()
 }
 // -------------------------------------------------------------------
-let buscarStatusDecres = async() =>{
+let buscarStatusDecres = async () => {
     let response = await fetch(
-        'http://localhost:3000/atividades/?_sort=statusTask&_order=desc') 
-    let descOrder = await response.json();  
+        'http://localhost:3000/atividades/?_sort=statusTask&_order=desc')
+    let descOrder = await response.json();
     console.log(descOrder)
     return descOrder
 }
-let buscarStatusAsc = async()=>{
+let buscarStatusAsc = async () => {
     let response = await fetch(
-        ' http://localhost:3000/atividades/?_sort=statusTask&_order=asc') 
-    let statusOrdeAcs = await response.json();  
+        ' http://localhost:3000/atividades/?_sort=statusTask&_order=asc')
+    let statusOrdeAcs = await response.json();
 
     console.log(statusOrdeAcs)
 
     return statusOrdeAcs
 }
 // --------------------------------------------------------------------
-let buscarDescDecres = async()=>{
+let buscarDescDecres = async () => {
     let response = await fetch(
-        'http://localhost:3000/atividades/?_sort=dateTask&_order=desc') 
-    let descOrder = await response.json();  
+        'http://localhost:3000/atividades/?_sort=dateTask&_order=desc')
+    let descOrder = await response.json();
     console.log(descOrder)
     return descOrder
 }
 
-let buscarDescAcen = async()=>{
+let buscarDescAcen = async () => {
     let response = await fetch(
-        'http://localhost:3000/atividades/?_sort=dateTask&_order=asc') 
-    let descOrderAcen = await response.json();  
+        'http://localhost:3000/atividades/?_sort=dateTask&_order=asc')
+    let descOrderAcen = await response.json();
     console.log(descOrderAcen)
     return descOrderAcen
 }
 // ----------------------------------------------------------------------------
-let buscarDateDesc = async()=>{
+let buscarDateDesc = async () => {
     let response = await fetch(
-        'http://localhost:3000/atividades/?_sort=dateTask&_order=desc') 
-    let dateOrder = await response.json();  
+        'http://localhost:3000/atividades/?_sort=dateTask&_order=desc')
+    let dateOrder = await response.json();
     console.log(dateOrder)
     return dateOrder
 }
 
-let buscarDateAc = async() =>{
+let buscarDateAc = async () => {
     let response = await fetch(
-        ' http://localhost:3000/atividades/?_sort=dateTaskk&_order=asc') 
-    let numOrderAsc = await response.json();  
+        ' http://localhost:3000/atividades/?_sort=dateTaskk&_order=asc')
+    let numOrderAsc = await response.json();
 
     console.log(numOrderAsc)
 
     return numOrderAsc
 }
 // -----------------------------------------------------------------------------
-let buscarNumAsc = async() =>{
+let buscarNumAsc = async () => {
     let response = await fetch(
-        ' http://localhost:3000/atividades/?_sort=numberTask&_order=asc') 
-    let numOrderAsc = await response.json();  
+        ' http://localhost:3000/atividades/?_sort=numberTask&_order=asc')
+    let numOrderAsc = await response.json();
 
     console.log(numOrderAsc)
 
     return numOrderAsc
 }
-let buscarNumDesc = async() =>{
+let buscarNumDesc = async () => {
     let response = await fetch(
-        'http://localhost:3000/atividades/?_sort=numberTask&_order=desc') 
-    let numOrder = await response.json();  
+        'http://localhost:3000/atividades/?_sort=numberTask&_order=desc')
+    let numOrder = await response.json();
     console.log(numOrder)
     return numOrder
 }
@@ -273,7 +256,7 @@ let buscarNumDesc = async() =>{
 
 // --------------------------------------------------------------------
 
-let printOrderStatus = async() =>{
+let printOrderStatus = async () => {
     let lista = ""
 
     const listTaskOrder = await buscarStatusDecres()
@@ -288,8 +271,8 @@ let printOrderStatus = async() =>{
         } else if (task.statusTask === "Parado") {
             status = "statusStop"
         }
-           lista = lista +
-                    `
+        lista = lista +
+            `
                    <tr>
                         <td>${task.numberTask} </td>
                         <td>${task.descriptionTask} </td>
@@ -306,12 +289,12 @@ let printOrderStatus = async() =>{
                    </tr>
         
             `
-        
+
     });
 
     document.getElementById('tbody').innerHTML = lista
 }
-let printOrderAcenStatus = async() =>{
+let printOrderAcenStatus = async () => {
     let lista = ""
 
     const listTaskOrder = await buscarStatusAsc()
@@ -326,8 +309,8 @@ let printOrderAcenStatus = async() =>{
         } else if (task.statusTask === "Parado") {
             status = "statusStop"
         }
-           lista = lista +
-                    `
+        lista = lista +
+            `
                    <tr>
                         <td>${task.numberTask} </td>
                         <td>${task.descriptionTask} </td>
@@ -344,14 +327,14 @@ let printOrderAcenStatus = async() =>{
                    </tr>
         
             `
-        
+
     });
 
     document.getElementById('tbody').innerHTML = lista
 }
 // --------------------------------------------------------------------------------------------
 
-let printOrderDescr = async() =>{
+let printOrderDescr = async () => {
     let lista = ""
 
     const listTaskOrder = await buscarDescDecres()
@@ -366,8 +349,8 @@ let printOrderDescr = async() =>{
         } else if (task.statusTask === "Parado") {
             status = "statusStop"
         }
-           lista = lista +
-                    `
+        lista = lista +
+            `
                    <tr>
                         <td>${task.numberTask} </td>
                         <td>${task.descriptionTask} </td>
@@ -384,12 +367,12 @@ let printOrderDescr = async() =>{
                    </tr>
         
             `
-        
+
     });
 
     document.getElementById('tbody').innerHTML = lista
 }
-let printOrderDescrAsc = async() =>{
+let printOrderDescrAsc = async () => {
     let lista = ""
 
     const listTaskOrder = await buscarDescAcen()
@@ -404,8 +387,8 @@ let printOrderDescrAsc = async() =>{
         } else if (task.statusTask === "Parado") {
             status = "statusStop"
         }
-           lista = lista +
-                    `
+        lista = lista +
+            `
                    <tr>
                         <td>${task.numberTask} </td>
                         <td>${task.descriptionTask} </td>
@@ -422,14 +405,14 @@ let printOrderDescrAsc = async() =>{
                    </tr>
         
             `
-        
+
     });
 
     document.getElementById('tbody').innerHTML = lista
 }
 // ----------------------------------------------------------
 
-let printOrderDate = async() =>{
+let printOrderDate = async () => {
     let lista = ""
 
     const listTaskOrder = await buscarDateDesc()
@@ -444,8 +427,8 @@ let printOrderDate = async() =>{
         } else if (task.statusTask === "Parado") {
             status = "statusStop"
         }
-           lista = lista +
-                    `
+        lista = lista +
+            `
                    <tr>
                         <td>${task.numberTask} </td>
                         <td>${task.descriptionTask} </td>
@@ -462,12 +445,12 @@ let printOrderDate = async() =>{
                    </tr>
         
             `
-        
+
     });
 
     document.getElementById('tbody').innerHTML = lista
 }
-let printOrderDateAce = async() =>{
+let printOrderDateAce = async () => {
     let lista = ""
 
     const listTaskOrder = await buscarDateAc()
@@ -482,8 +465,8 @@ let printOrderDateAce = async() =>{
         } else if (task.statusTask === "Parado") {
             status = "statusStop"
         }
-           lista = lista +
-                    `
+        lista = lista +
+            `
                    <tr>
                         <td>${task.numberTask} </td>
                         <td>${task.descriptionTask} </td>
@@ -500,21 +483,21 @@ let printOrderDateAce = async() =>{
                    </tr>
         
             `
-        
+
     });
 
     document.getElementById('tbody').innerHTML = lista
 }
 
 // ---------------------------------
-let printOrderNumDesc = async() =>{
+let printOrderNumDesc = async () => {
     let lista = ""
 
     const listTaskOrder = await buscarNumDesc()
 
     listTaskOrder.forEach((task) => {
-        
-       
+
+
         let status
 
         if (task.statusTask === "Concluida") {
@@ -524,8 +507,8 @@ let printOrderNumDesc = async() =>{
         } else if (task.statusTask === "Parado") {
             status = "statusStop"
         }
-           lista = lista +
-                    `
+        lista = lista +
+            `
                    <tr>
                         <td>${task.numberTask} </td>
                         <td>${task.descriptionTask} </td>
@@ -542,19 +525,19 @@ let printOrderNumDesc = async() =>{
                    </tr>
         
             `
-        
+
     });
 
     document.getElementById('tbody').innerHTML = lista
 }
-let printOrderNumAsc = async()=>{
+let printOrderNumAsc = async () => {
     let lista = ""
 
     const listTaskOrder = await buscarNumAsc()
 
     listTaskOrder.forEach((task) => {
-        
-       
+
+
         let status
 
         if (task.statusTask === "Concluida") {
@@ -564,8 +547,8 @@ let printOrderNumAsc = async()=>{
         } else if (task.statusTask === "Parado") {
             status = "statusStop"
         }
-           lista = lista +
-                    `
+        lista = lista +
+            `
                    <tr>
                         <td>${task.numberTask} </td>
                         <td>${task.descriptionTask} </td>
@@ -582,7 +565,7 @@ let printOrderNumAsc = async()=>{
                    </tr>
         
             `
-        
+
     });
 
     document.getElementById('tbody').innerHTML = lista
@@ -595,14 +578,14 @@ let buscarTask = async () => {
     return tarefa
 }
 
-let carregarTask = async()=>{
+let carregarTask = async () => {
     let lista = ""
 
     const listTask = await buscarTask()
 
     listTask.forEach((task) => {
-        
-       
+
+
         let status
 
         if (task.statusTask === "Concluida") {
@@ -612,8 +595,8 @@ let carregarTask = async()=>{
         } else if (task.statusTask === "Parado") {
             status = "statusStop"
         }
-           lista = lista +
-                    `
+        lista = lista +
+            `
                    <tr>
                         <td>${task.numberTask} </td>
                         <td>${task.descriptionTask} </td>
@@ -630,73 +613,81 @@ let carregarTask = async()=>{
                    </tr>
         
             `
-        
+
     });
 
     document.getElementById('tbody').innerHTML = lista
 }
-
-
-// ---------------------------------------------------------------
 
 // Dispara a ação para abrir o modal
 addTask.onclick = function () {
     modal.style.display = "block";
 }
 // Dispara a ação no botão Cancelar para fechar o modal sem trazer nenhum resultado
-cancModal.onclick = function () {
+function btnCancelar() {
+    cleanIput()
     modal.style.display = "none";
 }
-function fecharModal(){
+
+function fecharModal() {
     modal.style.display = "none"
+    cleanIput()
+
+
 }
 
 // Dispara a ação para abrir o modal
 addTask.onclick = function () {
-    modal.style.display = "block"
     document.getElementById('btnSalvar').onclick =
-    function (){
-    adicionarTarefas()
-} 
+        function () { adicionarTarefas() }
+    modal.style.display = "block"
+
 }
 // Dispara a ação no botão Cancelar para fechar o modal sem trazer nenhum resultado
-cancModal.onclick = function () {
-    modal.style.display = "none";
+
+//Validar Campos
+
+function validadeInput(campo, mensagem) {
+    if (campo = "") {
+        mensagem = "Campo Obrigatorio não informado"
+    } else {
+        mensagem = ''
+    }
 }
 
-    // Verificar apos a conclusao das funcionalidades
+// Limpando Campos
+function cleanIput() {
+    document.getElementById("numberTask").value = ""
+    document.getElementById("descriptionTask").value = ""
+    document.getElementById("dateTask").value = ""
+    document.getElementById("options").value = ""
+}
+function cadastradoComSucesso() {
+    let sucesso = document.getElementById("alerta");
 
-    function cadastradoComSucesso() {
-        let sucesso = document.getElementById("alerta");
+    sucesso.innerHTML = 'Cadastrado com sucesso.';
 
-        sucesso.innerHTML = 'Cadastrado com sucesso.';
+    sucesso.classList.add("alert-success", "animate__fadeInUp"); //CSS do bootstrap
+    sucesso.classList.remove("d-none");
 
-        sucesso.classList.add("alert-success", "animate__fadeInUp"); //CSS do bootstrap
+
+    window.setTimeout(() => {
+
+        sucesso.classList.add("animate__fadeOutDown");
         sucesso.classList.remove("d-none");
+    },
 
+        2000);
+}
 
-        window.setTimeout(() => {
-            
-            sucesso.classList.add("animate__fadeOutDown");
-            sucesso.classList.remove("d-none");
-        },
+// /tarefas?_sort=VAR1&_order=VAR2
 
-            2000);
-    }
+// VAR1 =  atributo do objeto
 
-    // function validadTask(){
-    //     let erroTask = document.getElementById('alertaErro')
+// VAR2 = asc/desc
 
-    //     erroTask.innerHTML = "Campos Obrigatorios não Preenchidos"
+// VAR1 e VAR2 = parametros
 
-    //     erroTask.classList.add("animate__fadeInUp");
-    //     erroTask.classList.remove('d-none');
-
-    //     window.setTimeout(()=>{
-    //         erroTask.classList.add('animate__fadeOutDown');
-    //         erroTask.classList.remove('d-none');
-    //     },
-    //     2000);
-    // }
+// funcaoOrdenar(var1, var2)
 
 
