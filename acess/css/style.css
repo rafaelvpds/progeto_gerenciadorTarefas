@@ -74,14 +74,55 @@ body{
 .buttonAdd :hover{
     background-color: #68519D;
     color: #FFFFFF;
-    border: none;
+  
 }
 
+.btnPesquisa button{
+    height: 25px;
+    width: 125px;
 
+    border-radius: 20px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 21px;
+    color: #68519D;
+    background-color: white;
+    border: 1px solid #68519D;
+
+}
+.btnPesquisa :hover{
+    background-color: #68519D;
+    color: #FFFFFF;
+  
+}
+.inptPesquisa input{
+    position: relative;
+    width: 200px;
+    height: 25px;
+    color: #68519D;
+    border: 1px solid rgba(0, 0, 0, 0);
+    background-color: rgb(238, 238, 238);
+    border-radius: 10px;
+    padding-left: 25px;
+}
+.inptPesquisa i{
+    position: absolute;
+    top: 5px;
+    color: #68519D;
+    font-size: 1rem;
+}
+.inptPesquisa input::placeholder{
+    color: #D7CAE5;
+}
+.table i{
+   font-size:0.9rem;
+}
 .table tr{
+    font-size: 0.9rem;
     color: #2C2661;
-}
 
+}
 span{
     display: block;
     color: rgb(255, 0, 0);

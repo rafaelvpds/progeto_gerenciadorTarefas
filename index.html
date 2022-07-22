@@ -66,11 +66,45 @@
                 </button>
             </div>
         </div>
+        <div class="row d-flex align-items-end">
+           <div class="col-5"></div>
+                <div class="col-5 inptPesquisa">
+                    <input type="text" id="pesquisaTarefas" placeholder="Pesquise aqui">
+                    <i class="fa-solid fa-magnifying-glass" onclick="btnSearch()"></i>
+                    
+                </div>
+            
+
+        </div>
+        <div class="row mt-3 ml-4">
+                    <div class="col-2 btnPesquisa">
+                        <button onclick="inProsse()">
+                        Em andamento
+                    
+                        </button>
+                    </div>   
+                        <div  class="col-2 btnPesquisa">
+                            <button onclick="concluid()">
+                                Concluida
+                            </button>
+                        </div>
+                        <div class="col-2 btnPesquisa">
+                            <button onclick="stoped()">
+                            Parado
+                            </button>
+                        </div>
+                        <div class="col-2 btnPesquisa">
+                            <button onclick="todosDados()">
+                            Todos os Dados
+                            </button>
+                        </div>
+        </div>
+   
         <!-- Tabela de Apresentação de dados -->
         <div class="row d-flex align-items-center">
             <div class="col-8">
 
-                <table class="table table-striped mt-5 ml-4">
+                <table class="table table-striped mt-4 ml-4">
                     <thead>
                         <tr>
                             <th scope="col">Núm
@@ -195,6 +229,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+
+        <!-- <script>(function(d){var s = d.createElement("script");s.setAttribute("data-account", "sa16PsDTSS");s.setAttribute("src", "https://cdn.userway.org/widget.js");(d.body || d.head).appendChild(s);})(document)</script><noscript>Please ensure Javascript is enabled for purposes of <a href="https://userway.org">website accessibility</a></noscript> -->
 
 </body>
 

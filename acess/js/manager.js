@@ -30,13 +30,33 @@ async function adicionarTarefas() {
     let inptDateTask = document.getElementById("dateTask").value;
     let inptstatusTask = document.getElementById("options").value;
 
-    validadeInput(document.getElementById("numberTask").value, document.getElementById("numero-obrigatorio").innerHTML = "Número tarefa não preenchida");
 
-    validadeInput(document.getElementById("descriptionTask").value, document.getElementById("descricao-obrigatorio").innerHTML = "Descrição tarefa não preenchida");
 
-    validadeInput(document.getElementById("dateTask").value, document.getElementById("campo-data").innerHTML = "Data tarefa não preenchida");
+    if (inptNumberTask == "") {
+        document.getElementById("numero-obrigatorio").innerHTML = "Preencha o Campo Descrção"
 
-    validadeInput(document.getElementById("options").value, document.getElementById("status-obrigatotio").innerHTML = "Status tarefa não preenchida");
+    } else {
+        document.getElementById("numero-obrigatorio").innerHTML = ""
+    }
+
+    if (inptDescriptionTask == "") {
+        document.getElementById("descricao-obrigatorio").innerHTML = "Preencha o Campo Descrção"
+
+    } else {
+        document.getElementById("descricao-obrigatorio").innerHTML = ""
+    }
+    if (inptDateTask === "") {
+        document.getElementById("campo-data").innerHTML = "Preencha Data"
+
+    } else {
+        document.getElementById("campo-data").innerHTML = ""
+    }
+    if (inptstatusTask === "") {
+        document.getElementById("status-obrigatotio").innerHTML = "Preencha o Campo Status"
+
+    } else {
+        document.getElementById("status-obrigatotio").innerHTML = ""
+    }
 
     if (inptNumberTask !== '' && inptDescriptionTask !== '' && inptDateTask !== '' & inptstatusTask !== '') {
 
@@ -84,10 +104,9 @@ let editar = async (idTarefas) => {
     let editarTask = await response.json()
 
 
-
-    document.getElementById("dateTask").value = editarTask.dateTask
-    document.getElementById("descriptionTask").value = editarTask.descriptionTask
     document.getElementById("numberTask").value = editarTask.numberTask
+    document.getElementById("descriptionTask").value = editarTask.descriptionTask
+    document.getElementById("dateTask").value = editarTask.dateTask
     document.getElementById("options").value = editarTask.statusTask
 
     document.getElementById('cancelEdit').onclick = function () { btnCancelar() }
@@ -100,32 +119,31 @@ const salvarEd = async (idTarefas) => {
     let inptDateTask = document.getElementById("dateTask").value;
     let inptstatusTask = document.getElementById("options").value;
 
-    validadeInput(document.getElementById("numberTask").value, document.getElementById("numero-obrigatorio").innerHTML = "Número tarefa não preenchida");
+    if (inptNumberTask == "") {
+        document.getElementById("numero-obrigatorio").innerHTML = "Preencha o Campo Descrção"
 
-    validadeInput(document.getElementById("descriptionTask").value, document.getElementById("descricao-obrigatorio").innerHTML = "Descrição tarefa não preenchida");
+    } else {
+        document.getElementById("numero-obrigatorio").innerHTML = ""
+    }
 
-    validadeInput(document.getElementById("dateTask").value, document.getElementById("campo-data").innerHTML = "Data tarefa não preenchida");
+    if (inptDescriptionTask == "") {
+        document.getElementById("descricao-obrigatorio").innerHTML = "Preencha o Campo Descrção"
 
-    validadeInput(document.getElementById("options").value, document.getElementById("status-obrigatotio").innerHTML = "Status tarefa não preenchida");
+    } else {
+        document.getElementById("descricao-obrigatorio").innerHTML = ""
+    }
+    if (inptDateTask === "") {
+        document.getElementById("campo-data").innerHTML = "Preencha Data"
 
-    // if(inptDescriptionTask ==""){
-    //     document.getElementById("descricao-obrigatorio").innerHTML ="Preencha o Campo Descrção"
+    } else {
+        document.getElementById("campo-data").innerHTML = ""
+    }
+    if (inptstatusTask === "") {
+        document.getElementById("status-obrigatotio").innerHTML = "Preencha o Campo Status"
 
-    // }else{
-    //     document.getElementById("descricao-obrigatorio").innerHTML =""
-    // }
-    // if(inptDateTask===""){
-    //    document.getElementById("campo-data").innerHTML ="Preencha Data"
-
-    // }else{
-    //     document.getElementById("campo-data").innerHTML =""
-    // }
-    // if(inptstatusTask===""){
-    //     document.getElementById("status-obrigatotio").innerHTML ="Preencha o Campo Status"
-
-    // }else{
-    //     document.getElementById("status-obrigatotio").innerHTML =""
-    // }
+    } else {
+        document.getElementById("status-obrigatotio").innerHTML = ""
+    }
 
     if (inptNumberTask !== '' && inptDescriptionTask !== '' && inptDateTask !== '' & inptstatusTask !== '') {
 
@@ -276,7 +294,7 @@ let printOrderStatus = async () => {
                    <tr>
                         <td>${task.numberTask} </td>
                         <td>${task.descriptionTask} </td>
-                        <td>${task.dateTask} </td>
+                        <td>${new Date(task.dateTask).toLocaleDateString('pt-BR')} </td>
                         <td class="${status}">${task.statusTask} </td>
                         
                         <td>
@@ -314,7 +332,7 @@ let printOrderAcenStatus = async () => {
                    <tr>
                         <td>${task.numberTask} </td>
                         <td>${task.descriptionTask} </td>
-                        <td>${task.dateTask} </td>
+                        <td>${new Date(task.dateTask).toLocaleDateString('pt-BR')} </td>
                         <td class="${status}">${task.statusTask} </td>
                         
                         <td>
@@ -354,7 +372,7 @@ let printOrderDescr = async () => {
                    <tr>
                         <td>${task.numberTask} </td>
                         <td>${task.descriptionTask} </td>
-                        <td>${task.dateTask} </td>
+                        <td>${new Date(task.dateTask).toLocaleDateString('pt-BR')} </td>
                         <td class="${status}">${task.statusTask} </td>
                         
                         <td>
@@ -392,7 +410,7 @@ let printOrderDescrAsc = async () => {
                    <tr>
                         <td>${task.numberTask} </td>
                         <td>${task.descriptionTask} </td>
-                        <td>${task.dateTask} </td>
+                        <td>${new Date(task.dateTask).toLocaleDateString('pt-BR')} </td>
                         <td class="${status}">${task.statusTask} </td>
                         
                         <td>
@@ -432,7 +450,7 @@ let printOrderDate = async () => {
                    <tr>
                         <td>${task.numberTask} </td>
                         <td>${task.descriptionTask} </td>
-                        <td>${task.dateTask} </td>
+                        <td>${new Date(task.dateTask).toLocaleDateString('pt-BR')} </td>
                         <td class="${status}">${task.statusTask} </td>
                         
                         <td>
@@ -470,7 +488,7 @@ let printOrderDateAce = async () => {
                    <tr>
                         <td>${task.numberTask} </td>
                         <td>${task.descriptionTask} </td>
-                        <td>${task.dateTask} </td>
+                        <td>${new Date(task.dateTask).toLocaleDateString('pt-BR')} </td>
                         <td class="${status}">${task.statusTask} </td>
                         
                         <td>
@@ -512,7 +530,7 @@ let printOrderNumDesc = async () => {
                    <tr>
                         <td>${task.numberTask} </td>
                         <td>${task.descriptionTask} </td>
-                        <td>${task.dateTask} </td>
+                        <td>${new Date(task.dateTask).toLocaleDateString('pt-BR')} </td>
                         <td class="${status}">${task.statusTask} </td>
                         
                         <td>
@@ -552,7 +570,7 @@ let printOrderNumAsc = async () => {
                    <tr>
                         <td>${task.numberTask} </td>
                         <td>${task.descriptionTask} </td>
-                        <td>${task.dateTask} </td>
+                        <td>${new Date(task.dateTask).toLocaleDateString('pt-BR')} </td>
                         <td class="${status}">${task.statusTask} </td>
                         
                         <td>
@@ -600,7 +618,7 @@ let carregarTask = async () => {
                    <tr>
                         <td>${task.numberTask} </td>
                         <td>${task.descriptionTask} </td>
-                        <td>${task.dateTask} </td>
+                        <td>${new Date(task.dateTask).toLocaleDateString('pt-BR')} </td>
                         <td class="${status}">${task.statusTask} </td>
                         
                         <td>
@@ -619,41 +637,243 @@ let carregarTask = async () => {
     document.getElementById('tbody').innerHTML = lista
 }
 
-// Dispara a ação para abrir o modal
-addTask.onclick = function () {
-    modal.style.display = "block";
+function concluid() {
+    prinFiltroStatusConcl();
 }
+let filtrarStatusConcl = async () => {
+    let response = await fetch(
+        'http://localhost:3000/atividades/?statusTask=Concluida')
+    //posts?title=json-server&author=typicode
+    let statsCon = await response.json();
+    console.log(statsCon)
+    return statsCon
+}
+
+let prinFiltroStatusConcl = async () => {
+    let lista = ""
+
+    const listTaskOrder = await filtrarStatusConcl()
+
+    listTaskOrder.forEach((task) => {
+
+
+        let status
+
+        if (task.statusTask === "Concluida") {
+            status = "statusConcluid"
+        } else if (task.statusTask === "Em Andamento") {
+            status = "statusInProgress"
+        } else if (task.statusTask === "Parado") {
+            status = "statusStop"
+        }
+        lista = lista +
+            `
+                   <tr>
+                        <td>${task.numberTask} </td>
+                        <td>${task.descriptionTask} </td>
+                        <td>${new Date(task.dateTask).toLocaleDateString('pt-BR')} </td>
+                        <td class="${status}">${task.statusTask} </td>
+                        
+                        <td>
+                            <img src="./acess/imagem/icones/editar.png" onclick ="editar(${task.id})"
+                            <img src="./acess/imagem/icones/excluir.png" onclick ="excluir(${task.id})">  
+                        </td>
+                   </tr>
+        
+            `
+
+    });
+
+    document.getElementById('tbody').innerHTML = lista
+}
+function inProsse(){
+    prinFiltroStatusInProc()
+}
+let filtrarStatusInProc = async () => {
+    let response = await fetch(
+        'http://localhost:3000/atividades/?statusTask=Em Andamento')
+    let statsProsse = await response.json();
+    console.log(statsProsse)
+    return statsProsse
+}
+
+let prinFiltroStatusInProc = async() =>{
+    let lista = ""
+
+    const listTaskOrder = await filtrarStatusInProc()
+
+    listTaskOrder.forEach((task) => {
+
+
+        let status
+
+        if (task.statusTask === "Concluida") {
+            status = "statusConcluid"
+        } else if (task.statusTask === "Em Andamento") {
+            status = "statusInProgress"
+        } else if (task.statusTask === "Parado") {
+            status = "statusStop"
+        }
+        lista = lista +
+            `
+                   <tr>
+                        <td>${task.numberTask} </td>
+                        <td>${task.descriptionTask} </td>
+                        <td>${new Date(task.dateTask).toLocaleDateString('pt-BR')} </td>
+                        <td class="${status}">${task.statusTask} </td>
+                        
+                        <td>
+                        
+                            <img src="./acess/imagem/icones/editar.png" onclick ="editar(${task.id})">
+
+                            <img src="./acess/imagem/icones/excluir.png" onclick ="excluir(${task.id})">  
+                        
+                        </td>
+                   </tr>
+        
+            `
+
+    });
+
+    document.getElementById('tbody').innerHTML = lista
+}
+function stoped(){
+ prinFiltroStatusStop()
+}
+let filtrarStatusStope = async () => {
+    let response = await fetch(
+        'http://localhost:3000/atividades/?statusTask=Parado')
+    let statsStop = await response.json();
+    console.log(statsStop)
+    return statsStop
+}
+let prinFiltroStatusStop = async() =>{
+    let lista = ""
+
+    const listTaskOrder = await filtrarStatusStope()
+
+    listTaskOrder.forEach((task) => {
+
+
+        let status
+
+        if (task.statusTask === "Concluida") {
+            status = "statusConcluid"
+        } else if (task.statusTask === "Em Andamento") {
+            status = "statusInProgress"
+        } else if (task.statusTask === "Parado") {
+            status = "statusStop"
+        }
+        lista = lista +
+            `
+                   <tr>
+                        <td>${task.numberTask} </td>
+                        <td>${task.descriptionTask} </td>
+                        <td>${new Date(task.dateTask).toLocaleDateString('pt-BR')} </td>
+                        <td class="${status}">${task.statusTask} </td>
+                        
+                        <td>
+                        
+                            <img src="./acess/imagem/icones/editar.png" onclick ="editar(${task.id})">
+
+                            <img src="./acess/imagem/icones/excluir.png" onclick ="excluir(${task.id})">  
+                        
+                        </td>
+                   </tr>
+        
+            `
+
+    });
+
+    document.getElementById('tbody').innerHTML = lista
+}
+
+function todosDados(){
+    carregarTask()
+}
+
+function btnSearch(){
+    prinFiltroDescri()
+}
+
+
+let filtrarDescr = async ()=>{
+    let inputPesquisas = document.getElementById('pesquisaTarefas').value;
+    
+    let response = await fetch(
+      `http://localhost:3000/atividades?descriptionTask=${inputPesquisas}`)
+      console.log(inputPesquisas)
+    let dados = await response.json();
+    console.log(dados)
+    return dados
+}
+let prinFiltroDescri = async() =>{
+    let lista = ""
+
+    const listTaskOrder = await filtrarDescr()
+
+    listTaskOrder.forEach((task) => {
+
+
+        let status
+
+        if (task.statusTask === "Concluida") {
+            status = "statusConcluid"
+        } else if (task.statusTask === "Em Andamento") {
+            status = "statusInProgress"
+        } else if (task.statusTask === "Parado") {
+            status = "statusStop"
+        }
+        lista = lista +
+            `
+                   <tr>
+                        <td>${task.numberTask} </td>
+                        <td>${task.descriptionTask} </td>
+                        <td>${new Date(task.dateTask).toLocaleDateString('pt-BR')} </td>
+                        <td class="${status}">${task.statusTask} </td>
+                        
+                        <td>
+                        
+                            <img src="./acess/imagem/icones/editar.png" onclick ="editar(${task.id})">
+
+                            <img src="./acess/imagem/icones/excluir.png" onclick ="excluir(${task.id})">  
+                        
+                        </td>
+                   </tr>
+        
+            `
+
+    });
+
+    document.getElementById('tbody').innerHTML = lista
+}
+
+
 // Dispara a ação no botão Cancelar para fechar o modal sem trazer nenhum resultado
 function btnCancelar() {
-    cleanIput()
-    modal.style.display = "none";
-}
 
+
+    modal.style.display = "none";
+    cleanIput()
+    cleanMsg()
+}
+// Dispara a ação no botão Cancelar para fechar o modal sem trazer nenhum resultado
 function fecharModal() {
     modal.style.display = "none"
+
     cleanIput()
-
-
 }
 
 // Dispara a ação para abrir o modal
 addTask.onclick = function () {
+
     document.getElementById('btnSalvar').onclick =
         function () { adicionarTarefas() }
+
     modal.style.display = "block"
 
 }
-// Dispara a ação no botão Cancelar para fechar o modal sem trazer nenhum resultado
 
-//Validar Campos
-
-function validadeInput(campo, mensagem) {
-    if (campo === "") {
-        mensagem = "Campo Obrigatorio não informado"
-    } else {
-        mensagem = ''
-    }
-}
 
 // Limpando Campos
 function cleanIput() {
@@ -662,6 +882,16 @@ function cleanIput() {
     document.getElementById("dateTask").value = ""
     document.getElementById("options").value = ""
 }
+
+function cleanMsg(){
+
+    document.getElementById("numero-obrigatorio").innerHTML = ""
+    document.getElementById("descricao-obrigatorio").innerHTML = ""
+    document.getElementById("campo-data").innerHTML = ""
+    document.getElementById("status-obrigatotio").innerHTML = ""
+
+}
+
 function cadastradoComSucesso() {
     let sucesso = document.getElementById("alerta");
 
@@ -679,21 +909,4 @@ function cadastradoComSucesso() {
 
         2000);
 }
-// functionOrdernar(nomeCampo, endPoint){
-//     let response = await fetch(
-//     `http://localhost:3000/atividades/?_sort=${nomeCampo}&_order=${endPoint}`)
-//     let ordenar = await response.json();
-//     console.log(ordenar)
-//     return descOrder
-// }
-// /tarefas?_sort=VAR1&_order=VAR2
-
-// VAR1 =  atributo do objeto
-
-// VAR2 = asc/desc
-
-// VAR1 e VAR2 = parametros
-
-// funcaoOrdenar(var1, var2)
-
 
