@@ -648,7 +648,7 @@ addTask.onclick = function () {
 //Validar Campos
 
 function validadeInput(campo, mensagem) {
-    if (campo = "") {
+    if (campo === "") {
         mensagem = "Campo Obrigatorio não informado"
     } else {
         mensagem = ''
