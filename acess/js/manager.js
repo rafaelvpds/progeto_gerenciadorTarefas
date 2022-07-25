@@ -848,7 +848,6 @@ let prinFiltroDescri = async() =>{
     document.getElementById('tbody').innerHTML = lista
 }
 
-
 // Dispara a ação no botão Cancelar para fechar o modal sem trazer nenhum resultado
 function btnCancelar() {
 
@@ -873,7 +872,6 @@ addTask.onclick = function () {
     modal.style.display = "block"
 
 }
-
 
 // Limpando Campos
 function cleanIput() {
