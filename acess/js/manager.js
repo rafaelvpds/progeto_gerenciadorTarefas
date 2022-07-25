@@ -164,7 +164,6 @@ const salvarEd = async (idTarefas) => {
         })
 
         await carregarTask();
-
         cleanIput();
         fecharModal();
 
@@ -189,7 +188,6 @@ function orderStatus() {
     printOrderStatus()
 }
 function orderStatusAsc() {
-
     printOrderAcenStatus()
 }
 // --------------------------------------------------------------------
@@ -206,74 +204,71 @@ function orderNumAsc() {
 let buscarStatusDecres = async () => {
     let response = await fetch(
         'http://localhost:3000/atividades/?_sort=statusTask&_order=desc')
-    let descOrder = await response.json();
-    console.log(descOrder)
-    return descOrder
+    let dados = await response.json();
+    console.log(dados)
+    return dados
 }
 let buscarStatusAsc = async () => {
     let response = await fetch(
         ' http://localhost:3000/atividades/?_sort=statusTask&_order=asc')
-    let statusOrdeAcs = await response.json();
+    let dados = await response.json();
 
-    console.log(statusOrdeAcs)
+    console.log(dados)
 
-    return statusOrdeAcs
+    return dados
 }
 // --------------------------------------------------------------------
 let buscarDescDecres = async () => {
     let response = await fetch(
         'http://localhost:3000/atividades/?_sort=dateTask&_order=desc')
-    let descOrder = await response.json();
-    console.log(descOrder)
-    return descOrder
+    let dados = await response.json();
+    console.log(dados)
+    return dados
 }
 
 let buscarDescAcen = async () => {
     let response = await fetch(
         'http://localhost:3000/atividades/?_sort=dateTask&_order=asc')
-    let descOrderAcen = await response.json();
-    console.log(descOrderAcen)
-    return descOrderAcen
+    let dados = await response.json();
+    console.log(dados)
+    return dados
 }
 // ----------------------------------------------------------------------------
 let buscarDateDesc = async () => {
     let response = await fetch(
         'http://localhost:3000/atividades/?_sort=dateTask&_order=desc')
-    let dateOrder = await response.json();
-    console.log(dateOrder)
-    return dateOrder
+    let dados = await response.json();
+    console.log(dados)
+    return dados
 }
 
 let buscarDateAc = async () => {
     let response = await fetch(
         ' http://localhost:3000/atividades/?_sort=dateTaskk&_order=asc')
-    let numOrderAsc = await response.json();
+    let dados = await response.json();
 
-    console.log(numOrderAsc)
+    console.log(dados)
 
-    return numOrderAsc
+    return dados
 }
 // -----------------------------------------------------------------------------
 let buscarNumAsc = async () => {
     let response = await fetch(
         ' http://localhost:3000/atividades/?_sort=numberTask&_order=asc')
-    let numOrderAsc = await response.json();
+    let dados = await response.json();
 
-    console.log(numOrderAsc)
+    console.log(dados)
 
-    return numOrderAsc
+    return dados
 }
 let buscarNumDesc = async () => {
     let response = await fetch(
         'http://localhost:3000/atividades/?_sort=numberTask&_order=desc')
-    let numOrder = await response.json();
-    console.log(numOrder)
-    return numOrder
+    let dados = await response.json();
+    console.log(dados)
+    return dados
 }
-
-
 // --------------------------------------------------------------------
-
 let printOrderStatus = async () => {
     let lista = ""
 
@@ -351,7 +346,6 @@ let printOrderAcenStatus = async () => {
     document.getElementById('tbody').innerHTML = lista
 }
 // --------------------------------------------------------------------------------------------
-
 let printOrderDescr = async () => {
     let lista = ""
 
@@ -592,18 +586,18 @@ let printOrderNumAsc = async () => {
 
 let buscarTask = async () => {
     const response = await fetch("http://localhost:3000/atividades");
-    const tarefa = await response.json()
-    return tarefa
+    const dados = await response.json()
+    return dados
 }
 
 let carregarTask = async () => {
     let lista = ""
+    let totalRegistro =0;
 
     const listTask = await buscarTask()
 
     listTask.forEach((task) => {
-
-
+     
         let status
 
         if (task.statusTask === "Concluida") {
@@ -634,7 +628,14 @@ let carregarTask = async () => {
 
     });
 
+    for(let i = 0; i<listTask.length;i++){
+        totalRegistro = totalRegistro+1
+    }
+    console.log(totalRegistro);
+    document.getElementById('fullRecord').innerHTML="Total de Registro é: "+ totalRegistro;
+
     document.getElementById('tbody').innerHTML = lista
+   
 }
 
 function concluid() {
@@ -644,14 +645,14 @@ let filtrarStatusConcl = async () => {
     let response = await fetch(
         'http://localhost:3000/atividades/?statusTask=Concluida')
     //posts?title=json-server&author=typicode
-    let statsCon = await response.json();
-    console.log(statsCon)
-    return statsCon
+    let dados = await response.json();
+    console.log(dados)
+    return dados
 }
 
 let prinFiltroStatusConcl = async () => {
     let lista = ""
-
+    let totalRegistro =0
     const listTaskOrder = await filtrarStatusConcl()
 
     listTaskOrder.forEach((task) => {
@@ -667,39 +668,50 @@ let prinFiltroStatusConcl = async () => {
             status = "statusStop"
         }
         lista = lista +
-            `
-                   <tr>
-                        <td>${task.numberTask} </td>
-                        <td>${task.descriptionTask} </td>
-                        <td>${new Date(task.dateTask).toLocaleDateString('pt-BR')} </td>
-                        <td class="${status}">${task.statusTask} </td>
-                        
-                        <td>
-                            <img src="./acess/imagem/icones/editar.png" onclick ="editar(${task.id})"
-                            <img src="./acess/imagem/icones/excluir.png" onclick ="excluir(${task.id})">  
-                        </td>
-                   </tr>
-        
-            `
+        `
+               <tr>
+                    <td>${task.numberTask} </td>
+                    <td>${task.descriptionTask} </td>
+                    <td>${new Date(task.dateTask).toLocaleDateString('pt-BR')} </td>
+                    <td class="${status}">${task.statusTask} </td>
+                    
+                    <td>
+                    
+                        <img src="./acess/imagem/icones/editar.png" onclick ="editar(${task.id})">
 
-    });
+                        <img src="./acess/imagem/icones/excluir.png" onclick ="excluir(${task.id})">  
+                    
+                    </td>
+               </tr>
+    
+        `
+
+});
+
+    for(let i=0; i<listTaskOrder.length; i++){
+        totalRegistro = totalRegistro+1
+
+    }
+    console.log(totalRegistro)
+    document.getElementById('fullRecord').innerHTML ="Total de Tarefas Concluidas são: " +totalRegistro
 
     document.getElementById('tbody').innerHTML = lista
 }
+
 function inProsse(){
     prinFiltroStatusInProc()
 }
 let filtrarStatusInProc = async () => {
     let response = await fetch(
         'http://localhost:3000/atividades/?statusTask=Em Andamento')
-    let statsProsse = await response.json();
-    console.log(statsProsse)
-    return statsProsse
+    let dados = await response.json();
+    console.log(dados)
+    return dados
 }
 
 let prinFiltroStatusInProc = async() =>{
     let lista = ""
-
+    totalRegistro =0
     const listTaskOrder = await filtrarStatusInProc()
 
     listTaskOrder.forEach((task) => {
@@ -734,7 +746,15 @@ let prinFiltroStatusInProc = async() =>{
             `
 
     });
+    
+    for(let i=0; i<listTaskOrder.length; i++){
+        totalRegistro = totalRegistro+1
 
+    }
+    console.log(totalRegistro)
+    document.getElementById('fullRecord').innerHTML ="Total de tarefas em andamento são: "+ totalRegistro
+
+    
     document.getElementById('tbody').innerHTML = lista
 }
 function stoped(){
@@ -743,13 +763,13 @@ function stoped(){
 let filtrarStatusStope = async () => {
     let response = await fetch(
         'http://localhost:3000/atividades/?statusTask=Parado')
-    let statsStop = await response.json();
-    console.log(statsStop)
-    return statsStop
+    let dados = await response.json();
+    console.log(dados)
+    return dados
 }
 let prinFiltroStatusStop = async() =>{
     let lista = ""
-
+    totalRegistro = 0
     const listTaskOrder = await filtrarStatusStope()
 
     listTaskOrder.forEach((task) => {
@@ -785,6 +805,13 @@ let prinFiltroStatusStop = async() =>{
 
     });
 
+    for(let i=0; i<listTaskOrder.length; i++){
+        totalRegistro = totalRegistro+1
+
+    }
+    console.log(totalRegistro)
+    document.getElementById('fullRecord').innerHTML ="Total de Registros Parados são: "+ totalRegistro
+
     document.getElementById('tbody').innerHTML = lista
 }
 
@@ -795,8 +822,6 @@ function todosDados(){
 function btnSearch(){
     prinFiltroDescri()
 }
-
-
 let filtrarDescr = async ()=>{
     let inputPesquisas = document.getElementById('pesquisaTarefas').value;
     
@@ -809,7 +834,7 @@ let filtrarDescr = async ()=>{
 }
 let prinFiltroDescri = async() =>{
     let lista = ""
-
+    let totalRegistro = 0;
     const listTaskOrder = await filtrarDescr()
 
     listTaskOrder.forEach((task) => {
@@ -845,9 +870,15 @@ let prinFiltroDescri = async() =>{
 
     });
 
+    for(let i=0; i<listTaskOrder.length; i++){
+        totalRegistro = totalRegistro + 1
+
+    }
+    console.log(totalRegistro)
+    document.getElementById('fullRecord').innerHTML ="Total de Registros Parados são: "+ totalRegistro
+
     document.getElementById('tbody').innerHTML = lista
 }
-
 // Dispara a ação no botão Cancelar para fechar o modal sem trazer nenhum resultado
 function btnCancelar() {
 
@@ -880,7 +911,7 @@ function cleanIput() {
     document.getElementById("dateTask").value = ""
     document.getElementById("options").value = ""
 }
-
+//Limpar mensagens
 function cleanMsg(){
 
     document.getElementById("numero-obrigatorio").innerHTML = ""
@@ -890,21 +921,21 @@ function cleanMsg(){
 
 }
 
-function cadastradoComSucesso() {
-    let sucesso = document.getElementById("alerta");
+// function cadastradoComSucesso() {
+//     let sucesso = document.getElementById("alerta");
 
-    sucesso.innerHTML = 'Cadastrado com sucesso.';
+//     sucesso.innerHTML = 'Cadastrado com sucesso.';
 
-    sucesso.classList.add("alert-success", "animate__fadeInUp"); //CSS do bootstrap
-    sucesso.classList.remove("d-none");
+//     sucesso.classList.add("alert-success", "animate__fadeInUp"); //CSS do bootstrap
+//     sucesso.classList.remove("d-none");
 
 
-    window.setTimeout(() => {
+//     window.setTimeout(() => {
 
-        sucesso.classList.add("animate__fadeOutDown");
-        sucesso.classList.remove("d-none");
-    },
+//         sucesso.classList.add("animate__fadeOutDown");
+//         sucesso.classList.remove("d-none");
+//     },
 
-        2000);
-}
+//         3000);
+// }
 

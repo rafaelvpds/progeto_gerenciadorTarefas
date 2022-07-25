@@ -6,7 +6,7 @@
     font-family: 'Poppins';    
 }
 body{
-   
+
     background: url(../imagem/barraAmarela.png) right bottom no-repeat;
     background-attachment: fixed;
 }
@@ -47,7 +47,7 @@ body{
 }
 
 /* Estilizando o titulo da tela Inicial */
-.titleManager h5 {
+.titleManager {
     font-weight: 800;
     font-size: 20px;
     color: #68519D;
@@ -111,6 +111,7 @@ body{
     top: 5px;
     color: #68519D;
     font-size: 1rem;
+    margin-left: 10px;
 }
 .inptPesquisa input::placeholder{
     color: #D7CAE5;
@@ -121,9 +122,14 @@ body{
 .table tr{
     font-size: 0.9rem;
     color: #2C2661;
-
 }
-span{
+
+#fullRecord{
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #2C2661;
+}
+.msgError{
     display: block;
     color: rgb(255, 0, 0);
     font-size: 10px;
@@ -148,7 +154,7 @@ span{
 .addTaskModal{
     width: 3%;
 }
-.pageTask h5 { 
+.pageTask{ 
     font-size: 25px;
     font-weight: 800;
     color: #68519D;
@@ -179,38 +185,34 @@ span{
 
 .pageTask input::placeholder {
     color: #68519D;
-    font-size: 1.0rem;
+    font-size: 0.9rem;
 }
-/* Ação quando o input for selecionado */
-.pageTask input:focus {
-    border: 1px solid ghostwhite;
-    
+input[type=date]{
+    width: 50%;
+    font-size: 0.9rem;
 }
-
 
 .pageTask select {
     color: #68519D;
     border: 1px solid #68519D;
     border-radius: 10px;
+    font-size: 0.9rem;
 }
 
-input[type=date]{
-    width: 50%;
-}
 
 .statusConcluid {
     color: green;
-    font-weight: 400;
+    font-weight: 700;
 }
 
 .statusInProgress {
     color: #F8B04E;
-    font-weight: 400;
+    font-weight: 700;
 }
 
 .statusStop {
     color: red;
-    font-weight: 400;
+    font-weight: 700;
 }
 
 #cancelEdit {
@@ -260,7 +262,7 @@ input[type=date]{
 
 
 
-/* .alert-success{
+ .alert-success{
     width: 300px;
     height: 75px;
     margin: 0 auto;
@@ -268,7 +270,8 @@ input[type=date]{
     font-weight: 400;
     border-radius: 5px;
     text-align: center;
-}
+ } 
+ /*
 .alert-danger{
     width: 350px;
     height: 75px;
@@ -276,4 +279,4 @@ input[type=date]{
     padding: 25px 5px;
     font-weight: 400;
     border-radius: 5px;
-} */
+} */ 
