@@ -46,42 +46,48 @@
             </div>
         </div>
         <!-- Titulo Gerenciador de Tarefas -->
-        <div class="row d-flex align-items-center">
-            <div class="col-7 titleManager ml-5">
+        <div class="row align-items-center">
+            <div class="col-9 titleManager ml-5">
                 Gereciador de Tarefas
             </div>
         </div>
         <!-- Botão de add tarefas  -->
-        <div class="row d-flex align-items-center">
+        <div class="row align-items-center">
             <div class="col-5 ml-5 buttonAdd">
                 <button id="btnTask">
                     + Adicionar nova tarefa
                 </button>
             </div>
         </div>
-        <div class="row d-flex align-items-end">
-            <div class="col-5"></div>
-            <div class="col-5 inptPesquisa">
+        <!-- Pesquisa de Descrição -->
+        <div class="row align-items-end">
+         
+            <div class="col-4 ml-4 mt-4 inptPesquisa">
                 <input type="text" id="pesquisaTarefas" placeholder="Pesquise aqui">
                 <i class="fa-solid fa-magnifying-glass" onclick="btnSearch()"></i>
             </div>
         </div>
+        <!-- Filtro de Pesquisa -->
         <div class="row mt-3 ml-4">
+            <!-- Tarefas em Andamento -->
             <div class="col-2 btnPesquisa">
                 <button onclick="inProsse()">
                     Em andamento
                 </button>
             </div>
+            <!-- Tarefas Concluidas -->
             <div class="col-2 btnPesquisa">
                 <button onclick="concluid()">
                     Concluida
                 </button>
             </div>
+            <!-- Tarefas Paradas -->
             <div class="col-2 btnPesquisa">
                 <button onclick="stoped()">
                     Parado
                 </button>
             </div>
+            <!-- Limpar todos os filtros e voltar para a tabela noramal -->
             <div class="col-2 btnPesquisa">
                 <button onclick="todosDados()">
                     Limpar Filtro
@@ -91,17 +97,23 @@
 
         <!-- Tabela de Apresentação de dados -->
         <div class="row d-flex align-items-center">
-            <div class="col-8">
+            <div class="col-9">
 
                 <table class="table table-striped mt-4 ml-4">
                     <thead>
                         <tr>
+                            <!--Numero da Tarefa +
+                                 Botão de Ordenar ordem decrescente e Ascendente 
+                            -->
                             <th>Núm
 
-                                <i class="fa-solid fa-sort-up" onclick="orderNumDecre()"></i>
-                                <i class="fa-solid fa-sort-down" onclick="orderNumAsc()"></i>
+                                <i class="img-fluid fa-solid fa-sort-up" onclick="orderNumDecre()"></i>
+                                <i class="img-fluid fa-solid fa-sort-down" onclick="orderNumAsc()"></i>
 
                             </th>
+                            <!--Descrição da Tarefa +
+                                 Botão de Ordenar ordem decrescente e Ascendente 
+                            -->
                             <th>
 
                                 Descição
@@ -109,19 +121,26 @@
                                 <i class="fa-solid fa-sort-down" onclick="orderDescAsc()"></i>
 
                             </th>
+                              <!--Dados Data Tarefa +
+                                 Botão de Ordenar ordem decrescente e Ascendente 
+                            -->
                             <th >
                                 Data
                                 <i class="fa-solid fa-sort-up" onclick="orderDate()"></i>
                                 <i class="fa-solid fa-sort-down" onclick="orderDateAsc()"></i>
                             </th>
+                            <!--Dados Status da Tabela +
+                                 Botão de Ordenar ordem decrescente e Ascendente 
+                            -->
                             <th>Status
                                 <i class="fa-solid fa-sort-up" onclick="orderStatus()"></i>
                                 <i class="fa-solid fa-sort-down" onclick="orderStatusAsc()"></i>
                             </th>
-                            <th scope="col">Ação</th>
+                            <th>Ação</th>
                         </tr>
                     </thead>
-                    <!-- Corpo da tabela onde vai receber os dados passados pelo usuario atravez do JS -->
+                    <!-- Corpo da tabela onde vai receber os dados passados pelo
+                         usuario atravez do JS -->
                     <tbody id="tbody">
 
                     </tbody>
@@ -129,13 +148,20 @@
             </div>
         </div>
 
-        <!-- Total de registros -->
+        <!-- Total de Tarefas Cadastradas
+        Mostra o total das tarefas:
+                    Concluida;
+                    Paradas;
+                    Em andamento;
+        de acordo com o filtro especificado pelo usuário
+        -->
             <div class="row d-flex align-items-end">
                 <div class="col-8 ml-4" id="fullRecord"> </div>   
             </div>
 
     <!--Inicio Modal Cadasdro de Tarefas -->
     <!-- Assim como o "Container" criado acima, criei um container para fazer o alinhamento e do modal -->
+    <div class="container">
     <div id="modalTask">
         <div class="pageTask">
             
@@ -143,10 +169,9 @@
                 Adicionar nova tarefa
         
             <!--"NUMERO"-->
-
             <div class="numTask">
                 <label for="">Número</label>
-                <input type="number" id="numberTask">
+                <input type="number" id="numberTask" placeholder="numero">
                 <span class="msgError" id="numero-obrigatorio"></span>
             </div>
             <!-- "DESCRIÇÃO" o usuario vai colocar a descrição da tabela  -->
@@ -183,6 +208,7 @@
             A simple success alert—check it out!
         </div>
     </div>
+</div>
     <!-- Fim Modal Formulario de Tarefas -->
     </div>
     <!--JavaScript -->

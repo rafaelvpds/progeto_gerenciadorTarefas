@@ -22,15 +22,17 @@ document.addEventListener("DOMContentLoaded", (event) => {
 let addTask = document.getElementById("btnTask");
 let modal = document.getElementById("modalTask");
 
-
+// Função de Adionar Tarefa
 async function adicionarTarefas() {
+
+    // Pegando os dados do Input de cada campo.
 
     let inptNumberTask = document.getElementById("numberTask").value;
     let inptDescriptionTask = document.getElementById("descriptionTask").value;
     let inptDateTask = document.getElementById("dateTask").value;
     let inptstatusTask = document.getElementById("options").value;
 
-
+// Fazendo a verificação se tem algum campo vazio.
 
     if (inptNumberTask == "") {
         document.getElementById("numero-obrigatorio").innerHTML = "Preencha o Campo Descrção"
@@ -59,14 +61,14 @@ async function adicionarTarefas() {
     }
 
     if (inptNumberTask !== '' && inptDescriptionTask !== '' && inptDateTask !== '' & inptstatusTask !== '') {
-
+//Se todos os campos estiverem diferente de Vazio, ele vai passar todos os dados recebidos para objeto
         task = {
-            numberTask: inptNumberTask,
+            numberTask:parseInt(inptNumberTask),
             descriptionTask: inptDescriptionTask,
             dateTask: inptDateTask,
             statusTask: inptstatusTask,
         }
-
+//Acionando a API json para savar os dados colocados dentro da mesma
         const cadastrarTask = await fetch('http://localhost:3000/atividades', {
             method: 'POST',
             headers: {
@@ -74,15 +76,63 @@ async function adicionarTarefas() {
             },
             body: JSON.stringify(task)
         })
-
+        //chama a função carregar tabela para mostrar os dados salvos dentro da API
         await carregarTask();
+        //Chama a Função Limpar dados, Limpa os campos da 
         cleanIput();
         fecharModal()
 
     }
 
 }
+let buscarTask = async () => {
+    const response = await fetch("http://localhost:3000/atividades");
+    const tarefa = await response.json()
+    return tarefa
+}
+let carregarTask = async () => {
+    let lista = ""
+    let totalRegistro = 0;
 
+    const listTask = await buscarTask()
+
+    listTask.forEach((task) => {
+     
+        let status
+
+        if (task.statusTask === "Concluida") {
+            status = "statusConcluid"
+        } else if (task.statusTask === "Em Andamento") {
+            status = "statusInProgress"
+        } else if (task.statusTask === "Parado") {
+            status = "statusStop"
+        }
+        lista = lista +
+            `
+                   <tr>
+                        <td>${task.numberTask} </td>
+                        <td>${task.descriptionTask} </td>
+                        <td>${new Date(task.dateTask).toLocaleDateString('pt-BR')} </td>
+                        <td class="${status}">${task.statusTask} </td>
+                        
+                        <td>
+                        
+                            <img src="./acess/imagem/icones/editar.png" onclick ="editar(${task.id})">
+
+                            <img src="./acess/imagem/icones/excluir.png" onclick ="excluir(${task.id})">  
+                        
+                        </td>
+                   </tr>
+        
+            `
+            totalRegistro = totalRegistro+1
+    });
+
+    document.getElementById('fullRecord').innerHTML="Total de Tarefas é: "+ totalRegistro;
+
+    document.getElementById('tbody').innerHTML = lista
+   
+}
 let excluir = async (idTarefas) => {
     console.log(idTarefas)
     let response = await fetch(`http://localhost:3000/atividades/${idTarefas}`, {
@@ -149,7 +199,7 @@ const salvarEd = async (idTarefas) => {
 
         task = {
 
-            numberTask: inptNumberTask,
+            numberTask:parseInt(inptNumberTask),
             descriptionTask: inptDescriptionTask,
             dateTask: inptDateTask,
             statusTask: inptstatusTask,
@@ -169,183 +219,29 @@ const salvarEd = async (idTarefas) => {
 
     }
 }
-
+// ----------Função de Ordenação de Descrição
 function orderDescDecre() {
     printOrderDescr()
 }
 function orderDescAsc() {
     printOrderDescrAsc()
 }
-// ------------------------------------------------------------------------
-function orderDate() {
-    printOrderDate();
-}
-function orderDateAsc() {
-    printOrderDateAce();
-}
-// -----------------------------------------------------------------------
-function orderStatus() {
-    printOrderStatus()
-}
-function orderStatusAsc() {
-    printOrderAcenStatus()
-}
-// --------------------------------------------------------------------
-function orderNumDecre() {
-    printOrderNumDesc();
-
-    // document.getElementById('orderAsc').onclick = function(){ printOrderNumAsc();}
-
-}
-function orderNumAsc() {
-    printOrderNumAsc()
-}
-// -------------------------------------------------------------------
-let buscarStatusDecres = async () => {
-    let response = await fetch(
-        'http://localhost:3000/atividades/?_sort=statusTask&_order=desc')
-    let dados = await response.json();
-    console.log(dados)
-    return dados
-}
-let buscarStatusAsc = async () => {
-    let response = await fetch(
-        ' http://localhost:3000/atividades/?_sort=statusTask&_order=asc')
-    let dados = await response.json();
-
-    console.log(dados)
-
-    return dados
-}
-// --------------------------------------------------------------------
 let buscarDescDecres = async () => {
     let response = await fetch(
-        'http://localhost:3000/atividades/?_sort=dateTask&_order=desc')
+        'http://localhost:3000/atividades/?_sort=descriptionTask&_order=desc')
     let dados = await response.json();
     console.log(dados)
     return dados
 }
-
 let buscarDescAcen = async () => {
     let response = await fetch(
-        'http://localhost:3000/atividades/?_sort=dateTask&_order=asc')
-    let dados = await response.json();
-    console.log(dados)
-    return dados
-}
-// ----------------------------------------------------------------------------
-let buscarDateDesc = async () => {
-    let response = await fetch(
-        'http://localhost:3000/atividades/?_sort=dateTask&_order=desc')
-    let dados = await response.json();
-    console.log(dados)
-    return dados
-}
-
-let buscarDateAc = async () => {
-    let response = await fetch(
-        ' http://localhost:3000/atividades/?_sort=dateTaskk&_order=asc')
+        ' http://localhost:3000/atividades/?_sort=descriptionTask&_order=asc')
     let dados = await response.json();
 
     console.log(dados)
 
     return dados
 }
-// -----------------------------------------------------------------------------
-let buscarNumAsc = async () => {
-    let response = await fetch(
-        ' http://localhost:3000/atividades/?_sort=numberTask&_order=asc')
-    let dados = await response.json();
-
-    console.log(dados)
-
-    return dados
-}
-let buscarNumDesc = async () => {
-    let response = await fetch(
-        'http://localhost:3000/atividades/?_sort=numberTask&_order=desc')
-    let dados = await response.json();
-    console.log(dados)
-    return dados
-}
-// --------------------------------------------------------------------
-let printOrderStatus = async () => {
-    let lista = ""
-
-    const listTaskOrder = await buscarStatusDecres()
-
-    listTaskOrder.forEach((task) => {
-        let status
-
-        if (task.statusTask === "Concluida") {
-            status = "statusConcluid"
-        } else if (task.statusTask === "Em Andamento") {
-            status = "statusInProgress"
-        } else if (task.statusTask === "Parado") {
-            status = "statusStop"
-        }
-        lista = lista +
-            `
-                   <tr>
-                        <td>${task.numberTask} </td>
-                        <td>${task.descriptionTask} </td>
-                        <td>${new Date(task.dateTask).toLocaleDateString('pt-BR')} </td>
-                        <td class="${status}">${task.statusTask} </td>
-                        
-                        <td>
-                        
-                            <img src="./acess/imagem/icones/editar.png" onclick ="editar(${task.id})">
-
-                            <img src="./acess/imagem/icones/excluir.png" onclick ="excluir(${task.id})">  
-                        
-                        </td>
-                   </tr>
-        
-            `
-
-    });
-
-    document.getElementById('tbody').innerHTML = lista
-}
-let printOrderAcenStatus = async () => {
-    let lista = ""
-
-    const listTaskOrder = await buscarStatusAsc()
-
-    listTaskOrder.forEach((task) => {
-        let status
-
-        if (task.statusTask === "Concluida") {
-            status = "statusConcluid"
-        } else if (task.statusTask === "Em Andamento") {
-            status = "statusInProgress"
-        } else if (task.statusTask === "Parado") {
-            status = "statusStop"
-        }
-        lista = lista +
-            `
-                   <tr>
-                        <td>${task.numberTask} </td>
-                        <td>${task.descriptionTask} </td>
-                        <td>${new Date(task.dateTask).toLocaleDateString('pt-BR')} </td>
-                        <td class="${status}">${task.statusTask} </td>
-                        
-                        <td>
-                        
-                            <img src="./acess/imagem/icones/editar.png" onclick ="editar(${task.id})">
-
-                            <img src="./acess/imagem/icones/excluir.png" onclick ="excluir(${task.id})">  
-                        
-                        </td>
-                   </tr>
-        
-            `
-
-    });
-
-    document.getElementById('tbody').innerHTML = lista
-}
-// --------------------------------------------------------------------------------------------
 let printOrderDescr = async () => {
     let lista = ""
 
@@ -422,8 +318,36 @@ let printOrderDescrAsc = async () => {
 
     document.getElementById('tbody').innerHTML = lista
 }
-// ----------------------------------------------------------
 
+// ----------Função de Ordenação de data -----------------------------------------------
+
+// ----------Chama a função imprimir para mostrar os dados ja ordenado 
+function orderDate() {
+    printOrderDate();
+}
+// ----------Chama a função imprimir para mostrar os dados ja ordenado Ascendente
+function orderDateAsc() {
+    printOrderDateAce();
+}
+// ------------- Chama a Api Jason passando a ardem de como vai aparecer no caso: Decrescente
+let buscarDateDesc = async () => {
+    let response = await fetch(
+        'http://localhost:3000/atividades/?_sort=dateTask&_order=desc')
+    let dados = await response.json();
+    console.log(dados)
+    return dados
+}
+// ------------- Chama a Api Jason passando a ardem de como vai aparecer no caso: Ascendente
+let buscarDateAc = async () => {
+    let response = await fetch(
+        ' http://localhost:3000/atividades/?_sort=dateTaskk&_order=asc')
+    let dados = await response.json();
+
+    console.log(dados)
+
+    return dados
+}
+// Dentro desta função eu chamo a função de busca na API Json e mando ele imprimir os dados: Decrescente
 let printOrderDate = async () => {
     let lista = ""
 
@@ -462,6 +386,7 @@ let printOrderDate = async () => {
 
     document.getElementById('tbody').innerHTML = lista
 }
+// Dentro desta função eu chamo a função de busca na API Json e mando ele imprimir os dados: Ascendente
 let printOrderDateAce = async () => {
     let lista = ""
 
@@ -500,8 +425,140 @@ let printOrderDateAce = async () => {
 
     document.getElementById('tbody').innerHTML = lista
 }
+// -------------Função de Ordenação por Status-----------------------------------------------
 
-// ---------------------------------
+// ----------Chama a função imprimir para mostrar os dados ja ordenado 
+function orderStatus() {
+    printOrderStatus()
+}
+// ----------Chama a função imprimir para mostrar os dados ja ordenado 
+
+function orderStatusAsc() {
+
+    printOrderAcenStatus()
+}
+// ------------- Chama a Api Jason passando a ardem de como vai aparecer no caso: Decrescente
+let buscarStatusDecres = async () => {
+    let response = await fetch(
+        'http://localhost:3000/atividades/?_sort=statusTask&_order=desc')
+    let dados = await response.json();
+    console.log(dados)
+    return dados
+}
+// ------------- Chama a Api Jason passando a ardem de como vai aparecer no caso: Ascendente
+let buscarStatusAsc = async () => {
+    let response = await fetch(
+        ' http://localhost:3000/atividades/?_sort=statusTask&_order=asc')
+    let dados = await response.json();
+
+    console.log(dados)
+
+    return dados
+}
+// ------------- Chama a Api Jason passando a ardem de como vai aparecer no caso: Decrescente
+let printOrderStatus = async () => {
+    let lista = ""
+
+    const listTaskOrder = await buscarStatusDecres()
+
+    listTaskOrder.forEach((task) => {
+        let status
+
+        if (task.statusTask === "Concluida") {
+            status = "statusConcluid"
+        } else if (task.statusTask === "Em Andamento") {
+            status = "statusInProgress"
+        } else if (task.statusTask === "Parado") {
+            status = "statusStop"
+        }
+        lista = lista +
+            `
+                   <tr>
+                        <td>${task.numberTask} </td>
+                        <td>${task.descriptionTask} </td>
+                        <td>${new Date(task.dateTask).toLocaleDateString('pt-BR')} </td>
+                        <td class="${status}">${task.statusTask} </td>
+                        
+                        <td>
+                        
+                            <img src="./acess/imagem/icones/editar.png" onclick ="editar(${task.id})">
+
+                            <img src="./acess/imagem/icones/excluir.png" onclick ="excluir(${task.id})">  
+                        
+                        </td>
+                   </tr>
+        
+            `
+
+    });
+
+    document.getElementById('tbody').innerHTML = lista
+}
+// Dentro desta função eu chamo a função de busca na API Json e mando ele imprimir os dados: Ascendente
+let printOrderAcenStatus = async () => {
+    let lista = ""
+
+    const listTaskOrder = await buscarStatusAsc()
+
+    listTaskOrder.forEach((task) => {
+        let status
+
+        if (task.statusTask === "Concluida") {
+            status = "statusConcluid"
+        } else if (task.statusTask === "Em Andamento") {
+            status = "statusInProgress"
+        } else if (task.statusTask === "Parado") {
+            status = "statusStop"
+        }
+        lista = lista +
+            `
+                   <tr>
+                        <td>${task.numberTask} </td>
+                        <td>${task.descriptionTask} </td>
+                        <td>${new Date(task.dateTask).toLocaleDateString('pt-BR')} </td>
+                        <td class="${status}">${task.statusTask} </td>
+                        
+                        <td>
+                        
+                            <img src="./acess/imagem/icones/editar.png" onclick ="editar(${task.id})">
+
+                            <img src="./acess/imagem/icones/excluir.png" onclick ="excluir(${task.id})">  
+                        
+                        </td>
+                   </tr>
+        
+            `
+
+    });
+
+    document.getElementById('tbody').innerHTML = lista
+}
+// --------------Função de Ordenação por Numero 
+function orderNumDecre() {
+    printOrderNumDesc();
+
+    // document.getElementById('orderAsc').onclick = function(){ printOrderNumAsc();}
+
+}
+function orderNumAsc() {
+    printOrderNumAsc()
+}
+let buscarNumAsc = async () => {
+    let response = await fetch(
+        ' http://localhost:3000/atividades/?_sort=numberTask&_order=asc')
+    let dados = await response.json();
+
+    console.log(dados)
+
+    return dados
+}
+let buscarNumDesc = async () => {
+    let response = await fetch(
+        'http://localhost:3000/atividades/?_sort=numberTask&_order=desc')
+    let dados = await response.json();
+    console.log(dados)
+    return dados
+}
 let printOrderNumDesc = async () => {
     let lista = ""
 
@@ -583,61 +640,6 @@ let printOrderNumAsc = async () => {
     document.getElementById('tbody').innerHTML = lista
 }
 
-
-let buscarTask = async () => {
-    const response = await fetch("http://localhost:3000/atividades");
-    const dados = await response.json()
-    return dados
-}
-
-let carregarTask = async () => {
-    let lista = ""
-    let totalRegistro =0;
-
-    const listTask = await buscarTask()
-
-    listTask.forEach((task) => {
-     
-        let status
-
-        if (task.statusTask === "Concluida") {
-            status = "statusConcluid"
-        } else if (task.statusTask === "Em Andamento") {
-            status = "statusInProgress"
-        } else if (task.statusTask === "Parado") {
-            status = "statusStop"
-        }
-        lista = lista +
-            `
-                   <tr>
-                        <td>${task.numberTask} </td>
-                        <td>${task.descriptionTask} </td>
-                        <td>${new Date(task.dateTask).toLocaleDateString('pt-BR')} </td>
-                        <td class="${status}">${task.statusTask} </td>
-                        
-                        <td>
-                        
-                            <img src="./acess/imagem/icones/editar.png" onclick ="editar(${task.id})">
-
-                            <img src="./acess/imagem/icones/excluir.png" onclick ="excluir(${task.id})">  
-                        
-                        </td>
-                   </tr>
-        
-            `
-
-    });
-
-    for(let i = 0; i<listTask.length;i++){
-        totalRegistro = totalRegistro+1
-    }
-    console.log(totalRegistro);
-    document.getElementById('fullRecord').innerHTML="Total de Registro é: "+ totalRegistro;
-
-    document.getElementById('tbody').innerHTML = lista
-   
-}
-
 function concluid() {
     prinFiltroStatusConcl();
 }
@@ -645,11 +647,10 @@ let filtrarStatusConcl = async () => {
     let response = await fetch(
         'http://localhost:3000/atividades/?statusTask=Concluida')
     //posts?title=json-server&author=typicode
-    let dados = await response.json();
-    console.log(dados)
-    return dados
+    let statsCon = await response.json();
+    console.log(statsCon)
+    return statsCon
 }
-
 let prinFiltroStatusConcl = async () => {
     let lista = ""
     let totalRegistro =0
@@ -667,37 +668,32 @@ let prinFiltroStatusConcl = async () => {
         } else if (task.statusTask === "Parado") {
             status = "statusStop"
         }
-        lista = lista +
-        `
-               <tr>
-                    <td>${task.numberTask} </td>
-                    <td>${task.descriptionTask} </td>
-                    <td>${new Date(task.dateTask).toLocaleDateString('pt-BR')} </td>
-                    <td class="${status}">${task.statusTask} </td>
-                    
-                    <td>
-                    
-                        <img src="./acess/imagem/icones/editar.png" onclick ="editar(${task.id})">
+     lista = lista +
+            `
+                   <tr>
+                        <td>${task.numberTask} </td>
+                        <td>${task.descriptionTask} </td>
+                        <td>${new Date(task.dateTask).toLocaleDateString('pt-BR')} </td>
+                        <td class="${status}">${task.statusTask} </td>
+                        
+                        <td>
+                        
+                            <img src="./acess/imagem/icones/editar.png" onclick ="editar(${task.id})">
 
-                        <img src="./acess/imagem/icones/excluir.png" onclick ="excluir(${task.id})">  
-                    
-                    </td>
-               </tr>
-    
-        `
+                            <img src="./acess/imagem/icones/excluir.png" onclick ="excluir(${task.id})">  
+                        
+                        </td>
+                   </tr>
+        
+            `
+            totalRegistro = totalRegistro +1
+    });
 
-});
 
-    for(let i=0; i<listTaskOrder.length; i++){
-        totalRegistro = totalRegistro+1
-
-    }
-    console.log(totalRegistro)
-    document.getElementById('fullRecord').innerHTML ="Total de Tarefas Concluidas são: " +totalRegistro
+    document.getElementById('fullRecord').innerHTML ="Tarefas Concluidas são: " +totalRegistro
 
     document.getElementById('tbody').innerHTML = lista
 }
-
 function inProsse(){
     prinFiltroStatusInProc()
 }
@@ -708,7 +704,6 @@ let filtrarStatusInProc = async () => {
     console.log(dados)
     return dados
 }
-
 let prinFiltroStatusInProc = async() =>{
     let lista = ""
     totalRegistro =0
@@ -744,17 +739,9 @@ let prinFiltroStatusInProc = async() =>{
                    </tr>
         
             `
-
+            totalRegistro = totalRegistro +1
     });
-    
-    for(let i=0; i<listTaskOrder.length; i++){
-        totalRegistro = totalRegistro+1
-
-    }
-    console.log(totalRegistro)
-    document.getElementById('fullRecord').innerHTML ="Total de tarefas em andamento são: "+ totalRegistro
-
-    
+    document.getElementById('fullRecord').innerHTML ="Tarefas em Processo são: " +totalRegistro
     document.getElementById('tbody').innerHTML = lista
 }
 function stoped(){
@@ -802,23 +789,16 @@ let prinFiltroStatusStop = async() =>{
                    </tr>
         
             `
-
+            totalRegistro = totalRegistro +1
     });
 
-    for(let i=0; i<listTaskOrder.length; i++){
-        totalRegistro = totalRegistro+1
-
-    }
-    console.log(totalRegistro)
-    document.getElementById('fullRecord').innerHTML ="Total de Registros Parados são: "+ totalRegistro
+    document.getElementById('fullRecord').innerHTML ="Tarefas Paradas são: "+ totalRegistro
 
     document.getElementById('tbody').innerHTML = lista
 }
-
 function todosDados(){
     carregarTask()
 }
-
 function btnSearch(){
     prinFiltroDescri()
 }
@@ -834,7 +814,7 @@ let filtrarDescr = async ()=>{
 }
 let prinFiltroDescri = async() =>{
     let lista = ""
-    let totalRegistro = 0;
+    totalRegistro = 0
     const listTaskOrder = await filtrarDescr()
 
     listTaskOrder.forEach((task) => {
@@ -867,15 +847,9 @@ let prinFiltroDescri = async() =>{
                    </tr>
         
             `
-
+        totalRegistro = totalRegistro +1
     });
-
-    for(let i=0; i<listTaskOrder.length; i++){
-        totalRegistro = totalRegistro + 1
-
-    }
-    console.log(totalRegistro)
-    document.getElementById('fullRecord').innerHTML ="Total de Registros Parados são: "+ totalRegistro
+    document.getElementById('fullRecord').innerHTML ="Tarefas Encontradas: "+ totalRegistro
 
     document.getElementById('tbody').innerHTML = lista
 }
@@ -893,7 +867,6 @@ function fecharModal() {
 
     cleanIput()
 }
-
 // Dispara a ação para abrir o modal
 addTask.onclick = function () {
 
@@ -903,7 +876,6 @@ addTask.onclick = function () {
     modal.style.display = "block"
 
 }
-
 // Limpando Campos
 function cleanIput() {
     document.getElementById("numberTask").value = ""
@@ -920,6 +892,9 @@ function cleanMsg(){
     document.getElementById("status-obrigatotio").innerHTML = ""
 
 }
+
+
+
 
 // function cadastradoComSucesso() {
 //     let sucesso = document.getElementById("alerta");
@@ -938,4 +913,3 @@ function cleanMsg(){
 
 //         3000);
 // }
-

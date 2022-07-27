@@ -80,7 +80,6 @@ body{
 .btnPesquisa button{
     height: 25px;
     width: 125px;
-
     border-radius: 20px;
     font-style: normal;
     font-weight: 400;
@@ -105,19 +104,20 @@ body{
     background-color: rgb(238, 238, 238);
     border-radius: 10px;
     padding-left: 25px;
+    font-size: 15px;
 }
 .inptPesquisa i{
     position: absolute;
     top: 5px;
     color: #68519D;
-    font-size: 1rem;
+    font-size: 20px;
     margin-left: 10px;
 }
 .inptPesquisa input::placeholder{
     color: #D7CAE5;
 }
 .table i{
-   font-size:0.9rem;
+   font-size:10px;
 }
 .table tr{
     font-size: 0.9rem;
@@ -181,6 +181,7 @@ body{
     background-color: rgb(238, 238, 238);
     border-radius: 10px;
     padding-left: 10px;
+    font-size: 15px;
 }
 
 .pageTask input::placeholder {
