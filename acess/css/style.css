@@ -9,6 +9,7 @@ body{
 
     background: url(../imagem/barraAmarela.png) right bottom no-repeat;
     background-attachment: fixed;
+    background-size: auto;
 }
 #loadingTask{
     position: fixed;
@@ -34,10 +35,10 @@ body{
 .barraLateralRoxo {
     background-color: #68519D;
     height: 100%;
-    width: 50px;
+    width: 5%;
     position: fixed;
     border-right: 20px solid #D7CAE5;
-    ;
+    
 }
 
 
@@ -79,11 +80,11 @@ body{
 
 .btnPesquisa button{
     height: 25px;
-    width: 125px;
+    width: 100px;
     border-radius: 20px;
     font-style: normal;
     font-weight: 400;
-    font-size: 14px;
+    font-size: 12px;
     line-height: 21px;
     color: #68519D;
     background-color: white;
@@ -96,33 +97,39 @@ body{
   
 }
 .inptPesquisa input{
-    position: relative;
-    width: 200px;
-    height: 25px;
+ 
+    width: 140px;
     color: #68519D;
     border: 1px solid rgba(0, 0, 0, 0);
     background-color: rgb(238, 238, 238);
     border-radius: 10px;
-    padding-left: 25px;
+    padding-left: 5px;
     font-size: 15px;
 }
 .inptPesquisa i{
-    position: absolute;
-    top: 5px;
     color: #68519D;
-    font-size: 20px;
-    margin-left: 10px;
+    font-size:15px;
+}
+.inptPesquisa i:hover{
+    color: #D7CAE5;
+    border: 2px solid #68519D ;
+    background-color: #68519D ;
+    border-radius: 10px;
+    cursor: pointer;
 }
 .inptPesquisa input::placeholder{
     color: #D7CAE5;
+    font-size:15px;
 }
+
 .table i{
    font-size:10px;
 }
-.table tr{
+table tr{
     font-size: 0.9rem;
     color: #2C2661;
 }
+
 
 #fullRecord{
     font-weight: 600;
@@ -139,7 +146,7 @@ body{
     position: fixed;
     padding-left: 20px;
     padding-top: 20px;
-    width: 50%;
+    width: 30%;
     height: 495px;
     top: 5%;
     left: 30%;
@@ -166,12 +173,13 @@ body{
     font-weight: 400;
     color: #68519D;
     display: block;
+    margin: 0;
 }
 
 
 /* Definindo a propriedade do input */
 .pageTask input {
-    width: 60%;
+    width: 50%;
     height: 50px;
     left: 443px;
     top: 262px;
@@ -181,23 +189,23 @@ body{
     background-color: rgb(238, 238, 238);
     border-radius: 10px;
     padding-left: 10px;
-    font-size: 15px;
+    font-size:15px;
 }
 
 .pageTask input::placeholder {
     color: #68519D;
-    font-size: 0.9rem;
+    font-size:15px;
 }
 input[type=date]{
-    width: 50%;
-    font-size: 0.9rem;
+
+    font-size:15px;
 }
 
 .pageTask select {
     color: #68519D;
     border: 1px solid #68519D;
     border-radius: 10px;
-    font-size: 0.9rem;
+    font-size:15px;
 }
 
 
@@ -223,7 +231,7 @@ input[type=date]{
     margin-bottom: 10px;
     border: none;
     height: 36px;
-    width: 225px;
+    width: 100px;
     border-radius: 20px;
     font-style: normal;
     font-weight: 600;
@@ -243,7 +251,7 @@ input[type=date]{
     right: 35px;
     margin-bottom: 10px;
     height: 36px;
-    width: 225px;
+    width: 100px;
     border-radius: 20px;
     font-style: normal;
     font-weight: 600;
@@ -260,24 +268,104 @@ input[type=date]{
   
 }
 
+@media screen and (max-width:800px ) {
+   
+    body{
+        background: none;
+       }
+       .inptPesquisa input{
+ 
+        width: 100px;
+        color: #68519D;
+        border: 1px solid rgba(0, 0, 0, 0);
+        background-color: rgb(238, 238, 238);
+        border-radius: 10px;
+        padding-left: 5px;
+        font-size: 15px;
+    }
+    .inptPesquisa input::placeholder{
+        color: #D7CAE5;
+        font-size:10px;
+    }
+}
+
+@media screen and (max-width:600px ) {
 
 
 
- .alert-success{
-    width: 300px;
-    height: 75px;
-    margin: 0 auto;
-    padding: 25px 5px;
-    font-weight: 400;
-    border-radius: 5px;
-    text-align: center;
- } 
- /*
-.alert-danger{
-    width: 350px;
-    height: 75px;
-    margin: 0 auto;
-    padding: 25px 5px;
-    font-weight: 400;
-    border-radius: 5px;
-} */ 
+    .table tr{
+        font-size: 10px;
+        color: #2C2661;
+    }
+    table th{
+        padding: 0;
+        border: 0;
+    }
+
+  
+    .table i{
+        display: none;
+     }
+     .barraLateralRoxo {
+        background-color: #68519D;
+        height: 100%;
+        width: 5%;
+        position: fixed;
+     }
+     #loadingTask{
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        z-index: 99999;
+        background-color: #411b92;
+        top: 0;
+        left: 0;
+        display: block;
+    }
+    .titleModal{
+        text-align: center;
+    }
+    #modalTask {
+        position: fixed;
+        padding-left: 20px;
+        padding-top: 20px;
+        width: 50%;
+        height: 495px;
+        top: 5%;
+        left: 30%;
+        bottom: 150px;
+        background: #FFFFFF;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 10px;
+        display: none;
+        z-index: 2000;
+    }
+    .pageTask label {
+        font-size: 10px;
+        font-weight: 400;  
+        color: #68519D;
+        display: block;
+    }
+    .pageTask input {
+        width: 90%;
+        height: 40px;
+        left: 443px;
+        top: 262px;
+        color: #68519D;
+        margin-bottom: 5px;
+        border: 1px solid rgba(0, 0, 0, 0);
+        background-color: rgb(238, 238, 238);
+        border-radius: 10px;
+        padding-left: 10px;
+        font-size:15px;
+    }
+    .pageTask input::placeholder {
+        color: #68519D;
+        font-size:10px;
+    }
+    input[type=date]{
+     
+        font-size:10px;
+    }
+
+}
