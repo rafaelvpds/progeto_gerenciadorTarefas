@@ -69,7 +69,7 @@ async function adicionarTarefas() {
             statusTask: inptstatusTask,
         }
 //Acionando a API json para savar os dados colocados dentro da mesma
-        const cadastrarTask = await fetch('http://localhost:3000/atividades', {
+        const cadastrarTask = await fetch('http://52.72.248.104:8000/atividades', {
             method: 'POST',
             headers: {
                 "Content-type": "application/json"
@@ -86,7 +86,7 @@ async function adicionarTarefas() {
 
 }
 let buscarTask = async () => {
-    const response = await fetch("http://localhost:3000/atividades");
+    const response = await fetch("http://52.72.248.104:8000/atividades");
     const tarefa = await response.json()
     return tarefa
 }
@@ -135,7 +135,7 @@ let carregarTask = async () => {
 }
 let excluir = async (idTarefas) => {
     console.log(idTarefas)
-    let response = await fetch(`http://localhost:3000/atividades/${idTarefas}`, {
+    let response = await fetch(`http://52.72.248.104:8000/atividades/${idTarefas}`, {
         method: 'DELETE',
         headers: {
             "Content-type": "application/json"
@@ -150,7 +150,7 @@ let editar = async (idTarefas) => {
 
     modal.style.display = "block";
     console.log(idTarefas)
-    let response = await fetch(`http://localhost:3000/atividades/${idTarefas}`)
+    let response = await fetch(`http://52.72.248.104:8000/atividades/${idTarefas}`)
     let editarTask = await response.json()
 
 
@@ -205,7 +205,7 @@ const salvarEd = async (idTarefas) => {
             statusTask: inptstatusTask,
         }
 
-        const cadastrarTask = await fetch(`http://localhost:3000/atividades/${idTarefas}`, {
+        const cadastrarTask = await fetch(`http://52.72.248.104:8000/atividades/${idTarefas}`, {
             method: 'PUT',
             headers: {
                 "Content-type": "application/json"
@@ -228,14 +228,14 @@ function orderDescAsc() {
 }
 let buscarDescDecres = async () => {
     let response = await fetch(
-        'http://localhost:3000/atividades/?_sort=descriptionTask&_order=desc')
+        'http://52.72.248.104:8000/atividades/?_sort=descriptionTask&_order=desc')
     let dados = await response.json();
     console.log(dados)
     return dados
 }
 let buscarDescAcen = async () => {
     let response = await fetch(
-        ' http://localhost:3000/atividades/?_sort=descriptionTask&_order=asc')
+        ' http://52.72.248.104:8000/atividades/?_sort=descriptionTask&_order=asc')
     let dados = await response.json();
 
     console.log(dados)
@@ -332,7 +332,7 @@ function orderDateAsc() {
 // ------------- Chama a Api Jason passando a ardem de como vai aparecer no caso: Decrescente
 let buscarDateDesc = async () => {
     let response = await fetch(
-        'http://localhost:3000/atividades/?_sort=dateTask&_order=desc')
+        'http://52.72.248.104:8000/atividades/?_sort=dateTask&_order=desc')
     let dados = await response.json();
     console.log(dados)
     return dados
@@ -340,7 +340,7 @@ let buscarDateDesc = async () => {
 // ------------- Chama a Api Jason passando a ardem de como vai aparecer no caso: Ascendente
 let buscarDateAc = async () => {
     let response = await fetch(
-        ' http://localhost:3000/atividades/?_sort=dateTaskk&_order=asc')
+        ' http://52.72.248.104:8000/atividades/?_sort=dateTaskk&_order=asc')
     let dados = await response.json();
 
     console.log(dados)
@@ -440,7 +440,7 @@ function orderStatusAsc() {
 // ------------- Chama a Api Jason passando a ardem de como vai aparecer no caso: Decrescente
 let buscarStatusDecres = async () => {
     let response = await fetch(
-        'http://localhost:3000/atividades/?_sort=statusTask&_order=desc')
+        'http://52.72.248.104:8000/atividades/?_sort=statusTask&_order=desc')
     let dados = await response.json();
     console.log(dados)
     return dados
@@ -448,7 +448,7 @@ let buscarStatusDecres = async () => {
 // ------------- Chama a Api Jason passando a ardem de como vai aparecer no caso: Ascendente
 let buscarStatusAsc = async () => {
     let response = await fetch(
-        ' http://localhost:3000/atividades/?_sort=statusTask&_order=asc')
+        ' http://52.72.248.104:8000/atividades/?_sort=statusTask&_order=asc')
     let dados = await response.json();
 
     console.log(dados)
@@ -545,7 +545,7 @@ function orderNumAsc() {
 }
 let buscarNumAsc = async () => {
     let response = await fetch(
-        ' http://localhost:3000/atividades/?_sort=numberTask&_order=asc')
+        ' http://52.72.248.104:8000/atividades/?_sort=numberTask&_order=asc')
     let dados = await response.json();
 
     console.log(dados)
@@ -554,7 +554,7 @@ let buscarNumAsc = async () => {
 }
 let buscarNumDesc = async () => {
     let response = await fetch(
-        'http://localhost:3000/atividades/?_sort=numberTask&_order=desc')
+        'http://52.72.248.104:8000/atividades/?_sort=numberTask&_order=desc')
     let dados = await response.json();
     console.log(dados)
     return dados
@@ -645,7 +645,7 @@ function concluid() {
 }
 let filtrarStatusConcl = async () => {
     let response = await fetch(
-        'http://localhost:3000/atividades/?statusTask=Concluida')
+        'http://52.72.248.104:8000/atividades/?statusTask=Concluida')
     //posts?title=json-server&author=typicode
     let statsCon = await response.json();
     console.log(statsCon)
@@ -699,7 +699,7 @@ function inProsse(){
 }
 let filtrarStatusInProc = async () => {
     let response = await fetch(
-        'http://localhost:3000/atividades/?statusTask=Em Andamento')
+        'http://52.72.248.104:8000/atividades/?statusTask=Em Andamento')
     let dados = await response.json();
     console.log(dados)
     return dados
@@ -749,7 +749,7 @@ function stoped(){
 }
 let filtrarStatusStope = async () => {
     let response = await fetch(
-        'http://localhost:3000/atividades/?statusTask=Parado')
+        'http://52.72.248.104:8000/atividades/?statusTask=Parado')
     let dados = await response.json();
     console.log(dados)
     return dados
@@ -806,7 +806,7 @@ let filtrarDescr = async ()=>{
     let inputPesquisas = document.getElementById('pesquisaTarefas').value;
     
     let response = await fetch(
-      `http://localhost:3000/atividades?descriptionTask=${inputPesquisas}`)
+      `http://52.72.248.104:8000/atividades?descriptionTask=${inputPesquisas}`)
       console.log(inputPesquisas)
     let dados = await response.json();
     console.log(dados)

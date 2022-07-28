@@ -1,17 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600;700;800;900&display=swap');
+
 /* definindo a propriedade inicial que todo o projeto vai pegar */
 * {
     padding: 0;
     margin: 0;
-    font-family: 'Poppins';    
+    font-family: 'Poppins';
 }
-body{
 
+body {
     background: url(../imagem/barraAmarela.png) right bottom no-repeat;
     background-attachment: fixed;
     background-size: auto;
 }
-#loadingTask{
+
+#loadingTask {
     position: fixed;
     width: 100%;
     height: 100%;
@@ -22,15 +24,16 @@ body{
     display: block;
 }
 
-#loadingTaskImg{
-    
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   height: 100%;
-   
+#loadingTaskImg {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+
 
 }
+
 /* fazendo a Barra Lateral esquerda de Background */
 .barraLateralRoxo {
     background-color: #68519D;
@@ -38,7 +41,7 @@ body{
     width: 5%;
     position: fixed;
     border-right: 20px solid #D7CAE5;
-    
+
 }
 
 
@@ -57,7 +60,7 @@ body{
 /* Estilizando o botão de "Adicionar tarefa da home Page" */
 
 .buttonAdd button {
-   
+
     height: 36px;
     width: 225px;
     left: 133px;
@@ -72,13 +75,13 @@ body{
     border: none;
 }
 
-.buttonAdd :hover{
+.buttonAdd :hover {
     background-color: #68519D;
     color: #FFFFFF;
-  
+
 }
 
-.btnPesquisa button{
+.btnPesquisa button {
     height: 25px;
     width: 100px;
     border-radius: 20px;
@@ -91,13 +94,15 @@ body{
     border: 1px solid #68519D;
 
 }
-.btnPesquisa :hover{
+
+.btnPesquisa :hover {
     background-color: #68519D;
     color: #FFFFFF;
-  
+
 }
-.inptPesquisa input{
- 
+
+.inptPesquisa input {
+
     width: 140px;
     color: #68519D;
     border: 1px solid rgba(0, 0, 0, 0);
@@ -106,37 +111,42 @@ body{
     padding-left: 5px;
     font-size: 15px;
 }
-.inptPesquisa i{
+
+.inptPesquisa i {
     color: #68519D;
-    font-size:15px;
+    font-size: 15px;
 }
-.inptPesquisa i:hover{
+
+.inptPesquisa i:hover {
     color: #D7CAE5;
-    border: 2px solid #68519D ;
-    background-color: #68519D ;
+    border: 2px solid #68519D;
+    background-color: #68519D;
     border-radius: 10px;
     cursor: pointer;
 }
-.inptPesquisa input::placeholder{
+
+.inptPesquisa input::placeholder {
     color: #D7CAE5;
-    font-size:15px;
+    font-size: 15px;
 }
 
-.table i{
-   font-size:10px;
+.table i {
+    font-size: 10px;
 }
-table tr{
+
+table tr {
     font-size: 0.9rem;
     color: #2C2661;
 }
 
 
-#fullRecord{
+#fullRecord {
     font-weight: 600;
     font-size: 0.9rem;
     color: #2C2661;
 }
-.msgError{
+
+.msgError {
     display: block;
     color: rgb(255, 0, 0);
     font-size: 10px;
@@ -158,10 +168,11 @@ table tr{
     z-index: 2000;
 }
 
-.addTaskModal{
+.addTaskModal {
     width: 3%;
 }
-.pageTask{ 
+
+.pageTask {
     font-size: 25px;
     font-weight: 800;
     color: #68519D;
@@ -189,23 +200,24 @@ table tr{
     background-color: rgb(238, 238, 238);
     border-radius: 10px;
     padding-left: 10px;
-    font-size:15px;
+    font-size: 15px;
 }
 
 .pageTask input::placeholder {
     color: #68519D;
-    font-size:15px;
+    font-size: 15px;
 }
-input[type=date]{
 
-    font-size:15px;
+input[type=date] {
+
+    font-size: 15px;
 }
 
 .pageTask select {
     color: #68519D;
     border: 1px solid #68519D;
     border-radius: 10px;
-    font-size:15px;
+    font-size: 15px;
 }
 
 
@@ -240,7 +252,8 @@ input[type=date]{
     color: #68519D;
     background-color: white;
 }
-#cancelEdit:hover{
+
+#cancelEdit:hover {
     background-color: #68519D;
     color: #FFFFFF;
 }
@@ -262,19 +275,20 @@ input[type=date]{
     background-color: white;
 }
 
-#btnSalvar:hover{
+#btnSalvar:hover {
     background-color: #68519D;
     color: #FFFFFF;
-  
+
 }
 
-@media screen and (max-width:800px ) {
-   
-    body{
+@media screen and (max-width:800px) {
+
+    body {
         background: none;
-       }
-       .inptPesquisa input{
- 
+    }
+
+    .inptPesquisa input {
+
         width: 100px;
         color: #68519D;
         border: 1px solid rgba(0, 0, 0, 0);
@@ -283,36 +297,40 @@ input[type=date]{
         padding-left: 5px;
         font-size: 15px;
     }
-    .inptPesquisa input::placeholder{
+
+    .inptPesquisa input::placeholder {
         color: #D7CAE5;
-        font-size:10px;
+        font-size: 10px;
     }
 }
 
-@media screen and (max-width:600px ) {
+@media screen and (max-width:600px) {
 
 
 
-    .table tr{
+    .table tr {
         font-size: 10px;
         color: #2C2661;
     }
-    table th{
+
+    table th {
         padding: 0;
         border: 0;
     }
 
-  
-    .table i{
+
+    .table i {
         display: none;
-     }
-     .barraLateralRoxo {
+    }
+
+    .barraLateralRoxo {
         background-color: #68519D;
         height: 100%;
         width: 5%;
         position: fixed;
-     }
-     #loadingTask{
+    }
+
+    #loadingTask {
         position: fixed;
         width: 100%;
         height: 100%;
@@ -322,9 +340,11 @@ input[type=date]{
         left: 0;
         display: block;
     }
-    .titleModal{
+
+    .titleModal {
         text-align: center;
     }
+
     #modalTask {
         position: fixed;
         padding-left: 20px;
@@ -340,12 +360,14 @@ input[type=date]{
         display: none;
         z-index: 2000;
     }
+
     .pageTask label {
         font-size: 10px;
-        font-weight: 400;  
+        font-weight: 400;
         color: #68519D;
         display: block;
     }
+
     .pageTask input {
         width: 90%;
         height: 40px;
@@ -357,15 +379,60 @@ input[type=date]{
         background-color: rgb(238, 238, 238);
         border-radius: 10px;
         padding-left: 10px;
-        font-size:15px;
+        font-size: 15px;
     }
+
     .pageTask input::placeholder {
         color: #68519D;
-        font-size:10px;
+        font-size: 10px;
     }
-    input[type=date]{
-     
-        font-size:10px;
+
+    input[type=date] {
+
+        font-size: 10px;
+    }
+    #btnSalvar {
+        position: absolute;
+        bottom: 0;
+        right: 4px;
+        margin-bottom: 10px;
+        height: 36px;
+        width: 70px;
+        border-radius: 20px;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 21px;
+        color: #68519D;
+        border: 1px solid #68519D;
+        background-color: white;
+    }
+    .inptPesquisa input {
+
+        width: 100px;
+    height: 30px;
+    color: #68519D;
+    border: 1px solid rgba(0, 0, 0, 0);
+    background-color: rgb(238, 238, 238);
+    border-radius: 10px;
+   
+    font-size: 10px;
+    }
+    
+    .inptPesquisa i {
+        margin-left: 30px;
+        margin-top: 8px;
+        color: #68519D;
+        font-size: 15px;
+    }
+    
+    .inptPesquisa i:hover {
+        cursor: pointer;
+    }
+    
+    .inptPesquisa input::placeholder {
+        color: #D7CAE5;
+        font-size: 10px;
     }
 
 }
