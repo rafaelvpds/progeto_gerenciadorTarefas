@@ -639,10 +639,11 @@ let printOrderNumAsc = async () => {
 
     document.getElementById('tbody').innerHTML = lista
 }
-
+// -------------Pesquisa todos os Status Concluidos-----------------------------
 function concluid() {
     prinFiltroStatusConcl();
 }
+// Função de Fazer o Filtro no Json-------------------
 let filtrarStatusConcl = async () => {
     let response = await fetch(
         'http://52.72.248.104:8000/atividades/?statusTask=Concluida')
@@ -651,6 +652,7 @@ let filtrarStatusConcl = async () => {
     console.log(statsCon)
     return statsCon
 }
+// Volta o Resultado das Tarefas Concluidas
 let prinFiltroStatusConcl = async () => {
     let lista = ""
     let totalRegistro =0
@@ -694,9 +696,11 @@ let prinFiltroStatusConcl = async () => {
 
     document.getElementById('tbody').innerHTML = lista
 }
+// -------------Pesquisa todos os Status em Andamento-----------------------------
 function inProsse(){
     prinFiltroStatusInProc()
 }
+// Função de Fazer o Filtro no Json-------------------
 let filtrarStatusInProc = async () => {
     let response = await fetch(
         'http://52.72.248.104:8000/atividades/?statusTask=Em Andamento')
@@ -704,6 +708,8 @@ let filtrarStatusInProc = async () => {
     console.log(dados)
     return dados
 }
+
+// Volta o Resultado das Tarefas em Andamento
 let prinFiltroStatusInProc = async() =>{
     let lista = ""
     totalRegistro =0
@@ -744,9 +750,11 @@ let prinFiltroStatusInProc = async() =>{
     document.getElementById('fullRecord').innerHTML ="Tarefas em Processo são: " +totalRegistro
     document.getElementById('tbody').innerHTML = lista
 }
+//-------------Pesquisa todos os Status Parados-----------------------------
 function stoped(){
  prinFiltroStatusStop()
 }
+// Função de Fazer o Filtro no Json-------------------
 let filtrarStatusStope = async () => {
     let response = await fetch(
         'http://52.72.248.104:8000/atividades/?statusTask=Parado')
@@ -754,6 +762,7 @@ let filtrarStatusStope = async () => {
     console.log(dados)
     return dados
 }
+// Volta o Resultado das Tarefas em Andamento
 let prinFiltroStatusStop = async() =>{
     let lista = ""
     totalRegistro = 0
@@ -796,15 +805,18 @@ let prinFiltroStatusStop = async() =>{
 
     document.getElementById('tbody').innerHTML = lista
 }
+// Limpa os Filtros e volta com dados normais
 function todosDados(){
     carregarTask()
 }
+
+// Pesquisa avançada pela descrição----------------------------------------------
 function btnSearch(){
     prinFiltroDescri()
 }
+// ---Busca a pesquisa no JSON
 let filtrarDescr = async ()=>{
-    let inputPesquisas = document.getElementById('pesquisaTarefas').value;
-    
+    let inputPesquisas = document.getElementById('pesquisaTarefas').value; 
     let response = await fetch(
       `http://52.72.248.104:8000/atividades?descriptionTask=${inputPesquisas}`)
       console.log(inputPesquisas)
@@ -812,6 +824,7 @@ let filtrarDescr = async ()=>{
     console.log(dados)
     return dados
 }
+// volta o valor da pesquisa pela descrição
 let prinFiltroDescri = async() =>{
     let lista = ""
     totalRegistro = 0
@@ -853,7 +866,7 @@ let prinFiltroDescri = async() =>{
 
     document.getElementById('tbody').innerHTML = lista
 }
-// Dispara a ação no botão Cancelar para fechar o modal sem trazer nenhum resultado
+// ---------------Dispara a ação no botão Cancelar para fechar o modal sem trazer nenhum resultado--------
 function btnCancelar() {
 
 
@@ -861,13 +874,13 @@ function btnCancelar() {
     cleanIput()
     cleanMsg()
 }
-// Dispara a ação no botão Cancelar para fechar o modal sem trazer nenhum resultado
+//----------- Dispara a ação no botão Cancelar para fechar o modal sem trazer nenhum resultado------------
 function fecharModal() {
     modal.style.display = "none"
 
     cleanIput()
 }
-// Dispara a ação para abrir o modal
+//------------------ Dispara a ação para abrir o modal----------------------------
 addTask.onclick = function () {
 
     document.getElementById('btnSalvar').onclick =
@@ -876,14 +889,14 @@ addTask.onclick = function () {
     modal.style.display = "block"
 
 }
-// Limpando Campos
+//----------------Função de  Limpar Campos------------------------------------
 function cleanIput() {
     document.getElementById("numberTask").value = ""
     document.getElementById("descriptionTask").value = ""
     document.getElementById("dateTask").value = ""
     document.getElementById("options").value = ""
 }
-//Limpar mensagens
+//--------------------Função de Limpar mensagens----------------------------------
 function cleanMsg(){
 
     document.getElementById("numero-obrigatorio").innerHTML = ""
@@ -892,24 +905,3 @@ function cleanMsg(){
     document.getElementById("status-obrigatotio").innerHTML = ""
 
 }
-
-
-
-
-// function cadastradoComSucesso() {
-//     let sucesso = document.getElementById("alerta");
-
-//     sucesso.innerHTML = 'Cadastrado com sucesso.';
-
-//     sucesso.classList.add("alert-success", "animate__fadeInUp"); //CSS do bootstrap
-//     sucesso.classList.remove("d-none");
-
-
-//     window.setTimeout(() => {
-
-//         sucesso.classList.add("animate__fadeOutDown");
-//         sucesso.classList.remove("d-none");
-//     },
-
-//         3000);
-// }
