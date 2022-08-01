@@ -112,7 +112,7 @@ let carregarTask = async () => {
                    <tr>
                         <td>${task.numberTask} </td>
                         <td>${task.descriptionTask} </td>
-                        <td>${new Date(task.dateTask).toLocaleDateString('pt-BR')} </td>
+                        <td>${task.dateTask} </td>
                         <td class="${status}">${task.statusTask} </td>
                         
                         <td>
@@ -262,7 +262,7 @@ let printOrderDescr = async () => {
                    <tr>
                         <td>${task.numberTask} </td>
                         <td>${task.descriptionTask} </td>
-                        <td>${new Date(task.dateTask).toLocaleDateString('pt-BR')} </td>
+                        <td>${task.dateTask} </td>
                         <td class="${status}">${task.statusTask} </td>
                         
                         <td>
@@ -300,7 +300,7 @@ let printOrderDescrAsc = async () => {
                    <tr>
                         <td>${task.numberTask} </td>
                         <td>${task.descriptionTask} </td>
-                        <td>${new Date(task.dateTask).toLocaleDateString('pt-BR')} </td>
+                        <td>${task.dateTask} </td>
                         <td class="${status}">${task.statusTask} </td>
                         
                         <td>
@@ -368,7 +368,7 @@ let printOrderDate = async () => {
                    <tr>
                         <td>${task.numberTask} </td>
                         <td>${task.descriptionTask} </td>
-                        <td>${new Date(task.dateTask).toLocaleDateString('pt-BR')} </td>
+                        <td>${task.dateTask} </td>
                         <td class="${status}">${task.statusTask} </td>
                         
                         <td>
@@ -407,7 +407,7 @@ let printOrderDateAce = async () => {
                    <tr>
                         <td>${task.numberTask} </td>
                         <td>${task.descriptionTask} </td>
-                        <td>${new Date(task.dateTask).toLocaleDateString('pt-BR')} </td>
+                        <td>${task.dateTask} </td>
                         <td class="${status}">${task.statusTask} </td>
                         
                         <td>
@@ -476,7 +476,7 @@ let printOrderStatus = async () => {
                    <tr>
                         <td>${task.numberTask} </td>
                         <td>${task.descriptionTask} </td>
-                        <td>${new Date(task.dateTask).toLocaleDateString('pt-BR')} </td>
+                        <td>${task.dateTask} </td>
                         <td class="${status}">${task.statusTask} </td>
                         
                         <td>
@@ -515,7 +515,7 @@ let printOrderAcenStatus = async () => {
                    <tr>
                         <td>${task.numberTask} </td>
                         <td>${task.descriptionTask} </td>
-                        <td>${new Date(task.dateTask).toLocaleDateString('pt-BR')} </td>
+                        <td>${task.dateTask} </td>
                         <td class="${status}">${task.statusTask} </td>
                         
                         <td>
@@ -581,7 +581,7 @@ let printOrderNumDesc = async () => {
                    <tr>
                         <td>${task.numberTask} </td>
                         <td>${task.descriptionTask} </td>
-                        <td>${new Date(task.dateTask).toLocaleDateString('pt-BR')} </td>
+                        <td>${task.dateTask} </td>
                         <td class="${status}">${task.statusTask} </td>
                         
                         <td>
@@ -621,7 +621,7 @@ let printOrderNumAsc = async () => {
                    <tr>
                         <td>${task.numberTask} </td>
                         <td>${task.descriptionTask} </td>
-                        <td>${new Date(task.dateTask).toLocaleDateString('pt-BR')} </td>
+                        <td>${task.dateTask} </td>
                         <td class="${status}">${task.statusTask} </td>
                         
                         <td>
@@ -675,7 +675,7 @@ let prinFiltroStatusConcl = async () => {
                    <tr>
                         <td>${task.numberTask} </td>
                         <td>${task.descriptionTask} </td>
-                        <td>${new Date(task.dateTask).toLocaleDateString('pt-BR')} </td>
+                        <td>${task.dateTask} </td>
                         <td class="${status}">${task.statusTask} </td>
                         
                         <td>
@@ -732,7 +732,7 @@ let prinFiltroStatusInProc = async() =>{
                    <tr>
                         <td>${task.numberTask} </td>
                         <td>${task.descriptionTask} </td>
-                        <td>${new Date(task.dateTask).toLocaleDateString('pt-BR')} </td>
+                        <td>${task.dateTask} </td>
                         <td class="${status}">${task.statusTask} </td>
                         
                         <td>
@@ -785,7 +785,7 @@ let prinFiltroStatusStop = async() =>{
                    <tr>
                         <td>${task.numberTask} </td>
                         <td>${task.descriptionTask} </td>
-                        <td>${new Date(task.dateTask).toLocaleDateString('pt-BR')} </td>
+                        <td>${task.dateTask} </td>
                         <td class="${status}">${task.statusTask} </td>
                         
                         <td>
@@ -847,7 +847,7 @@ let prinFiltroDescri = async() =>{
                    <tr>
                         <td>${task.numberTask} </td>
                         <td>${task.descriptionTask} </td>
-                        <td>${new Date(task.dateTask).toLocaleDateString('pt-BR')} </td>
+                        <td>${task.dateTask} </td>
                         <td class="${status}">${task.statusTask} </td>
                         
                         <td>
