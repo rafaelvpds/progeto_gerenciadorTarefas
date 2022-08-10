@@ -10,14 +10,10 @@ function loadingScreen() {
 window.addEventListener("load", (event) => {
     loadingScreen();
     carregarTask();
-
 })
-
 document.addEventListener("DOMContentLoaded", (event) => {
     document.getElementById("loadingTask").style.display = "block";
-
 })
-
 // ----------------------------------------------------------------------------
 let addTask = document.getElementById("btnTask");
 let modal = document.getElementById("modalTask");
@@ -32,7 +28,7 @@ async function adicionarTarefas() {
     let inptDateTask = document.getElementById("dateTask").value;
     let inptstatusTask = document.getElementById("options").value;
 
-// Fazendo a verificação se tem algum campo vazio.
+    // Fazendo a verificação se tem algum campo vazio.
 
     if (inptNumberTask == "") {
         document.getElementById("numero-obrigatorio").innerHTML = "Preencha o Campo Descrção"
@@ -61,14 +57,14 @@ async function adicionarTarefas() {
     }
 
     if (inptNumberTask !== '' && inptDescriptionTask !== '' && inptDateTask !== '' & inptstatusTask !== '') {
-//Se todos os campos estiverem diferente de Vazio, ele vai passar todos os dados recebidos para objeto
+        //Se todos os campos estiverem diferente de Vazio, ele vai passar todos os dados recebidos para objeto
         task = {
-            numberTask:parseInt(inptNumberTask),
+            numberTask: parseInt(inptNumberTask),
             descriptionTask: inptDescriptionTask,
             dateTask: inptDateTask,
             statusTask: inptstatusTask,
         }
-//Acionando a API json para salvar os dados colocados dentro da mesma
+        //Acionando a API json para salvar os dados colocados dentro da mesma
         const cadastrarTask = await fetch('http://52.72.248.104:8000/atividades', {
             method: 'POST',
             headers: {
@@ -97,7 +93,7 @@ let carregarTask = async () => {
     const listTask = await buscarTask()
 
     listTask.forEach((task) => {
-     
+
         let status
 
         if (task.statusTask === "Concluida") {
@@ -125,13 +121,13 @@ let carregarTask = async () => {
                    </tr>
         
             `
-            totalRegistro = totalRegistro+1
+        totalRegistro = totalRegistro + 1
     });
 
-    document.getElementById('fullRecord').innerHTML="Total de Tarefas é: "+ totalRegistro;
+    document.getElementById('fullRecord').innerHTML = "Total de Tarefas é: " + totalRegistro;
 
     document.getElementById('tbody').innerHTML = lista
-   
+
 }
 let excluir = async (idTarefas) => {
     console.log(idTarefas)
@@ -169,7 +165,7 @@ const salvarEd = async (idTarefas) => {
     let inptDescriptionTask = document.getElementById("descriptionTask").value;
     let inptDateTask = document.getElementById("dateTask").value;
     let inptstatusTask = document.getElementById("options").value;
- // Passa pela verifição se todos os inputs estão preenchidos
+    // Passa pela verifição se todos os inputs estão preenchidos
     if (inptNumberTask == "") {
         document.getElementById("numero-obrigatorio").innerHTML = "Preencha o Campo Descrção"
 
@@ -197,10 +193,10 @@ const salvarEd = async (idTarefas) => {
     }
 
     if (inptNumberTask !== '' && inptDescriptionTask !== '' && inptDateTask !== '' & inptstatusTask !== '') {
-//mandando os dados para a API json 
+        //mandando os dados para a API json 
         task = {
 
-            numberTask:parseInt(inptNumberTask),
+            numberTask: parseInt(inptNumberTask),
             descriptionTask: inptDescriptionTask,
             dateTask: inptDateTask,
             statusTask: inptstatusTask,
@@ -659,7 +655,7 @@ let filtrarStatusConcl = async () => {
 // Volta o Resultado das Tarefas Concluidas
 let prinFiltroStatusConcl = async () => {
     let lista = ""
-    let totalRegistro =0
+    let totalRegistro = 0
     const listTaskOrder = await filtrarStatusConcl()
 
     listTaskOrder.forEach((task) => {
@@ -674,7 +670,7 @@ let prinFiltroStatusConcl = async () => {
         } else if (task.statusTask === "Parado") {
             status = "statusStop"
         }
-     lista = lista +
+        lista = lista +
             `
                    <tr>
                         <td>${task.numberTask} </td>
@@ -692,16 +688,16 @@ let prinFiltroStatusConcl = async () => {
                    </tr>
         
             `
-            totalRegistro = totalRegistro +1
+        totalRegistro = totalRegistro + 1
     });
 
 
-    document.getElementById('fullRecord').innerHTML ="Tarefas Concluidas são: " +totalRegistro
+    document.getElementById('fullRecord').innerHTML = "Tarefas Concluidas são: " + totalRegistro
 
     document.getElementById('tbody').innerHTML = lista
 }
 // -------------Pesquisa todos os Status em Andamento-----------------------------
-function inProsse(){
+function inProsse() {
     prinFiltroStatusInProc()
 }
 // Função de Fazer o Filtro no Json-------------------
@@ -714,9 +710,9 @@ let filtrarStatusInProc = async () => {
 }
 
 // Volta o Resultado das Tarefas em Andamento
-let prinFiltroStatusInProc = async() =>{
+let prinFiltroStatusInProc = async () => {
     let lista = ""
-    totalRegistro =0
+    totalRegistro = 0
     const listTaskOrder = await filtrarStatusInProc()
 
     listTaskOrder.forEach((task) => {
@@ -749,14 +745,14 @@ let prinFiltroStatusInProc = async() =>{
                    </tr>
         
             `
-            totalRegistro = totalRegistro +1
+        totalRegistro = totalRegistro + 1
     });
-    document.getElementById('fullRecord').innerHTML ="Tarefas em Processo são: " +totalRegistro
+    document.getElementById('fullRecord').innerHTML = "Tarefas em Processo são: " + totalRegistro
     document.getElementById('tbody').innerHTML = lista
 }
 //-------------Pesquisa todos os Status Parados-----------------------------
-function stoped(){
- prinFiltroStatusStop()
+function stoped() {
+    prinFiltroStatusStop()
 }
 // Função de Fazer o Filtro no Json-------------------
 let filtrarStatusStope = async () => {
@@ -767,7 +763,7 @@ let filtrarStatusStope = async () => {
     return dados
 }
 // Volta o Resultado das Tarefas em Andamento
-let prinFiltroStatusStop = async() =>{
+let prinFiltroStatusStop = async () => {
     let lista = ""
     totalRegistro = 0
     const listTaskOrder = await filtrarStatusStope()
@@ -802,34 +798,34 @@ let prinFiltroStatusStop = async() =>{
                    </tr>
         
             `
-            totalRegistro = totalRegistro +1
+        totalRegistro = totalRegistro + 1
     });
 
-    document.getElementById('fullRecord').innerHTML ="Tarefas Paradas são: "+ totalRegistro
+    document.getElementById('fullRecord').innerHTML = "Tarefas Paradas são: " + totalRegistro
 
     document.getElementById('tbody').innerHTML = lista
 }
 // Limpa os Filtros e volta com dados normais
-function todosDados(){
+function todosDados() {
     carregarTask()
 }
 
 // Pesquisa avançada pela descrição----------------------------------------------
-function btnSearch(){
+function btnSearch() {
     prinFiltroDescri()
 }
 // ---Busca a pesquisa no JSON
-let filtrarDescr = async ()=>{
-    let inputPesquisas = document.getElementById('pesquisaTarefas').value; 
+let filtrarDescr = async () => {
+    let inputPesquisas = document.getElementById('pesquisaTarefas').value;
     let response = await fetch(
-      `http://52.72.248.104:8000/atividades?descriptionTask=${inputPesquisas}`)
-      console.log(inputPesquisas)
+        `http://52.72.248.104:8000/atividades?descriptionTask=${inputPesquisas}`)
+    console.log(inputPesquisas)
     let dados = await response.json();
     console.log(dados)
     return dados
 }
 // volta o valor da pesquisa pela descrição
-let prinFiltroDescri = async() =>{
+let prinFiltroDescri = async () => {
     let lista = ""
     totalRegistro = 0
     const listTaskOrder = await filtrarDescr()
@@ -864,9 +860,9 @@ let prinFiltroDescri = async() =>{
                    </tr>
         
             `
-        totalRegistro = totalRegistro +1
+        totalRegistro = totalRegistro + 1
     });
-    document.getElementById('fullRecord').innerHTML ="Tarefas Encontradas: "+ totalRegistro
+    document.getElementById('fullRecord').innerHTML = "Tarefas Encontradas: " + totalRegistro
 
     document.getElementById('tbody').innerHTML = lista
 }
@@ -901,7 +897,7 @@ function cleanIput() {
     document.getElementById("options").value = ""
 }
 //--------------------Função de Limpar mensagens----------------------------------
-function cleanMsg(){
+function cleanMsg() {
 
     document.getElementById("numero-obrigatorio").innerHTML = ""
     document.getElementById("descricao-obrigatorio").innerHTML = ""
