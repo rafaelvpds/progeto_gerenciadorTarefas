@@ -68,7 +68,7 @@ async function adicionarTarefas() {
             dateTask: inptDateTask,
             statusTask: inptstatusTask,
         }
-//Acionando a API json para savar os dados colocados dentro da mesma
+//Acionando a API json para salvar os dados colocados dentro da mesma
         const cadastrarTask = await fetch('http://52.72.248.104:8000/atividades', {
             method: 'POST',
             headers: {
@@ -162,13 +162,14 @@ let editar = async (idTarefas) => {
     document.getElementById('cancelEdit').onclick = function () { btnCancelar() }
     document.getElementById('btnSalvar').onclick = function () { salvarEd(idTarefas) }
 }
-
+// ---------------------Função para editar e salvar os dados editados--------------------
 const salvarEd = async (idTarefas) => {
+    // Pega os valores do dados salvos e coloca cada dado em seu devido Input
     let inptNumberTask = document.getElementById("numberTask").value;
     let inptDescriptionTask = document.getElementById("descriptionTask").value;
     let inptDateTask = document.getElementById("dateTask").value;
     let inptstatusTask = document.getElementById("options").value;
-
+ // Passa pela verifição se todos os inputs estão preenchidos
     if (inptNumberTask == "") {
         document.getElementById("numero-obrigatorio").innerHTML = "Preencha o Campo Descrção"
 
@@ -196,7 +197,7 @@ const salvarEd = async (idTarefas) => {
     }
 
     if (inptNumberTask !== '' && inptDescriptionTask !== '' && inptDateTask !== '' & inptstatusTask !== '') {
-
+//mandando os dados para a API json 
         task = {
 
             numberTask:parseInt(inptNumberTask),
@@ -226,6 +227,7 @@ function orderDescDecre() {
 function orderDescAsc() {
     printOrderDescrAsc()
 }
+// Primeiro fazemos a busca na API Json
 let buscarDescDecres = async () => {
     let response = await fetch(
         'http://52.72.248.104:8000/atividades/?_sort=descriptionTask&_order=desc')
@@ -242,7 +244,9 @@ let buscarDescAcen = async () => {
 
     return dados
 }
+// Passamos o resultado da busca na função de imprimir e mostrar na tela
 let printOrderDescr = async () => {
+    //declaramos esta variavel para guardar os dados de retorno da Api
     let lista = ""
 
     const listTaskOrder = await buscarDescDecres()
